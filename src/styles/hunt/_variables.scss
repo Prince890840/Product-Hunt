@@ -1,0 +1,49 @@
+@import "./fonts.scss";
+
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+$sm: 37.5em;
+$md: 48em;
+$lg: 64em;
+$xl: 75em;
+
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+// ********** colors ***********
+
+$text-color: #fff;
+$nav-item: #4b587c;
+$color_1: #008b62;
+$color_2: #444;
+$color_3: #222;
+$color_4: #ddd;
+$background-color_1: #e7ffff;
+
+// ********** colors ***********
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin breakpoint($point) {
+  @if $point == md {
+    @media (min-width: $md) {
+      @content;
+    }
+  }
+}

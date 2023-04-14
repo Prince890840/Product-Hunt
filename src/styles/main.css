@@ -1,0 +1,174 @@
+@font-face {
+  font-family: "Blinker-Black";
+  src: url(../../assets/font/Blinker-Black.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Bold";
+  src: url(../../assets/font/Blinker-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-ExtraBold";
+  src: url(../../assets/font/Blinker-ExtraBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-ExtraLight";
+  src: url(../../assets/font/Blinker-ExtraLight.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Light";
+  src: url(../../assets/font/Blinker-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Regular";
+  src: url(../../assets/font/Blinker-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-SemiBold";
+  src: url(../../assets/font/Blinker-SemiBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Thin";
+  src: url(../../assets/font/Blinker-Thin.ttf) format("truetype");
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper {
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: "Blinker-Black";
+  src: url(../../assets/font/Blinker-Black.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Bold";
+  src: url(../../assets/font/Blinker-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-ExtraBold";
+  src: url(../../assets/font/Blinker-ExtraBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-ExtraLight";
+  src: url(../../assets/font/Blinker-ExtraLight.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Light";
+  src: url(../../assets/font/Blinker-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Regular";
+  src: url(../../assets/font/Blinker-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-SemiBold";
+  src: url(../../assets/font/Blinker-SemiBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Blinker-Thin";
+  src: url(../../assets/font/Blinker-Thin.ttf) format("truetype");
+}
+.trending__topics__filter {
+  display: flex;
+  padding: 12px 0;
+}
+
+.trending__topics__filter .current__activity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px solid #d9e1ec;
+  padding-right: 8px;
+}
+
+.trending__topics__filter .current__activity .today__activity {
+  box-sizing: border-box;
+  background: 0 0;
+  border-color: #d9e1ec;
+  border-radius: 40px;
+  border: 1px solid #d9e1ec;
+  display: inline-block;
+  white-space: nowrap;
+  text-align: center;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.trending__topics__filter .current__activity .today__activity span {
+  color: #4b587c;
+  padding: 4px;
+  margin-left: 4px;
+  font-family: "Blinker-Light";
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.spacing {
+  margin-left: 8px;
+}
+
+.trending__topics__filter .trending__topics {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.trending__topics__filter .trending__topics .label {
+  margin-left: 12px;
+  font-family: "Blinker-Light";
+  color: #21293c;
+  word-spacing: 0;
+  white-space: nowrap;
+  line-height: 24px;
+}
+
+.trending__topics__filter .trending__topics .topic {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #4b587c;
+  white-space: nowrap;
+  font-family: "Blinker-Light";
+  margin-left: 8px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: #eef2ff;
+  border-color: transparent;
+  border-radius: 40px;
+  border: 1px solid #d9e1ec;
+  padding: 4px 12px;
+}
+
+.product__section_layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+.product__section_layout .left_section {
+  min-width: 766px;
+  max-height: 100%;
+}
+.product__section_layout .right_section {
+  max-width: 450px;
+  max-height: 100%;
+}/*# sourceMappingURL=main.css.map */

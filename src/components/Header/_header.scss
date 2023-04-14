@@ -1,0 +1,121 @@
+@import "../../styles/hunt/variables.scss";
+
+.nav__container {
+  padding: 20px 32px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 1px 1px rgba(33, 41, 63, 0.1);
+  top: 0;
+  position: sticky;
+  z-index: 20;
+  height: 80px;
+
+  .navigation__section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .search__product__section {
+    margin-left: 32px;
+
+    $color_1: #838d99;
+
+    .search__box {
+      font-size: 14px;
+      line-height: normal;
+      background: #ffffff;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
+      background-repeat: no-repeat;
+      background-position: 10px 10px;
+      background-size: 20px 20px;
+      border-radius: 5px;
+      padding: 0 20px 0 40px;
+      width: 220px;
+      box-sizing: border-box;
+      appearance: none;
+      color: #4b587c;
+      height: 40px;
+      border: 1px solid #d9e1ec;
+
+      &::placeholder {
+        color: $color_1;
+      }
+      &:focus {
+        outline: none;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.16);
+      }
+    }
+  }
+  .navigation__menu {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 32px;
+    }
+
+    .nav__link {
+      font-size: 16px;
+      line-height: 24px;
+      color: $nav-item;
+    }
+
+    li {
+      margin-left: 32px;
+      font-family: $font-family-regular;
+      font-weight: 400;
+    }
+  }
+
+  .profile__section {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .profile__item {
+      margin-left: 32px;
+    }
+
+    .profile__item .lunch__product {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      font-family: $font-family-regular;
+      cursor: pointer;
+      background: linear-gradient(227deg, #ff4582, #e12e0d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .user__profile {
+      border-radius: 50%;
+    }
+
+    .notification {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .notification svg {
+      margin-right: 8px;
+    }
+  }
+}

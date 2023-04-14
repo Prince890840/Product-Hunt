@@ -1,0 +1,22 @@
+@import "./hunt/variables.scss";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper {
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+@import "./hunt//trendingtopics";
+@import "./hunt/product";

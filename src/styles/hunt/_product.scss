@@ -1,0 +1,14 @@
+.product__section_layout {
+  display: flex;
+  flex-wrap: wrap;
+
+  .left_section {
+    min-width: 766px;
+    max-height: 100%;
+  }
+  
+  .right_section {
+    max-width: 450px;
+    max-height: 100%;
+  }
+}

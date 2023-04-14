@@ -1,0 +1,108 @@
+@import "./variables";
+
+.searchbox__wrapper {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 225, 236, 0.2);
+  background: linear-gradient(
+      358.31deg,
+      #fff -24.13%,
+      hsla(0, 0%, 100%, 0) 338.58%
+    ),
+    linear-gradient(
+      89.84deg,
+      rgba(230, 36, 174, 0.15) 0.34%,
+      rgba(94, 58, 255, 0.15) 16.96%,
+      rgba(10, 136, 255, 0.15) 34.66%,
+      rgba(75, 191, 80, 0.15) 50.12%,
+      rgba(137, 206, 0, 0.15) 66.22%,
+      rgba(239, 183, 0, 0.15) 82%,
+      rgba(246, 73, 0, 0.15) 99.9%
+    );
+}
+
+.search__box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+
+  h1 {
+    font-size: 18px;
+    line-height: 28px;
+    color: #21293c;
+    font-family: $font-family-semibold;
+  }
+
+  .icon__section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+    background: rgba(75, 88, 124, 0.05);
+    border-radius: 12px;
+    padding: 0;
+    margin-left: 8px;
+    appearance: none;
+    outline: none;
+    border: 1px solid transparent;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+$color_1: #838d99;
+
+.input__box {
+  font-size: 14px;
+  line-height: normal;
+  background: #ffffff;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
+  background-repeat: no-repeat;
+  background-position: 10px 10px;
+  background-size: 20px 20px;
+  border-radius: 5px;
+  padding: 0 20px 0 40px;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  color: #4b587c;
+  height: 40px;
+  border: 1px solid #d9e1ec;
+
+  &::placeholder {
+    color: $color_1;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.16);
+  }
+}
+
+.answered__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.answered__section .image__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.answered__section .image__section img {
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+}

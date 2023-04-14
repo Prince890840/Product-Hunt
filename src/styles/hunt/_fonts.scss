@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Blinker-Black";
+  src: url(../../assets/font/Blinker-Black.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Blinker-Bold";
+  src: url(../../assets/font/Blinker-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Blinker-ExtraBold";
+  src: url(../../assets/font/Blinker-ExtraBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Blinker-ExtraLight";
+  src: url(../../assets/font/Blinker-ExtraLight.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Blinker-Light";
+  src: url(../../assets/font/Blinker-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Blinker-Regular";
+  src: url(../../assets/font/Blinker-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Blinker-SemiBold";
+  src: url(../../assets/font/Blinker-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Blinker-Thin";
+  src: url(../../assets/font/Blinker-Thin.ttf) format("truetype");
+}
+
+$font-family-black: "Blinker-Black";
+$font-family-bold: "Blinker-Bold";
+$font-family-extrabold: "Blinker-ExtraBold";
+$font-family-extra-light: "Blinker-ExtraLight";
+$font-family-light: "Blinker-Light";
+$font-family-regular: "Blinker-Regular";
+$font-family-semibold: "Blinker-SemiBold";
+$font-family-thin: "Blinker-Thin";
