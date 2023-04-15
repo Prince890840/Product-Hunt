@@ -39,8 +39,10 @@
 }
 
 body {
-  height: 100%;
   width: 100%;
+  font-family: "Blinker-Regular";
+  height: 100%;
+  background: #fff;
 }
 
 .wrapper {
@@ -158,11 +160,13 @@ body {
   border-radius: 40px;
   border: 1px solid #d9e1ec;
   padding: 4px 12px;
+  cursor: pointer;
 }
 
 .product__section_layout {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 .product__section_layout .left_section {
   min-width: 766px;
@@ -171,4 +175,7 @@ body {
 .product__section_layout .right_section {
   max-width: 450px;
   max-height: 100%;
+  border-left: 1px solid #d9e1ec;
+  margin-left: 64px;
+  padding-left: 71px;
 }/*# sourceMappingURL=main.css.map */

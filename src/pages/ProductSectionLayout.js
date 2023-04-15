@@ -4,7 +4,7 @@ import React from "react";
 import "../styles/hunt/_product.scss";
 
 // components
-// import RightSidebar from "./RightSidebar";
+import RightSidebar from "./RightSidebar";
 import LeftSidebar from "./LeftSidebar";
 
 const ProductSectionLayout = () => {
@@ -14,9 +14,9 @@ const ProductSectionLayout = () => {
         <div className="left_section">
           <LeftSidebar />
         </div>
-    {/*     <div className="right_section">
+        <div className="right_section">
           <RightSidebar />
-        </div> */}
+        </div>
       </div>
     </>
   );

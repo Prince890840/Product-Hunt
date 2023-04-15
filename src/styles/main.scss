@@ -9,8 +9,10 @@
 }
 
 body {
-  height: 100%;
   width: 100%;
+  font-family: $font-family-regular;
+  height: 100%;
+  background: #fff;
 }
 
 .wrapper {

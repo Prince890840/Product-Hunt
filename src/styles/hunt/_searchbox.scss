@@ -2,6 +2,7 @@
 
 .searchbox__wrapper {
   padding: 16px;
+  margin-bottom: 20px;
   border-radius: 8px;
   border: 1px solid rgba(217, 225, 236, 0.2);
   background: linear-gradient(
@@ -26,13 +27,13 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 16px;
 
   h1 {
     font-size: 18px;
     line-height: 28px;
     color: #21293c;
     font-family: $font-family-semibold;
+    margin-bottom: 16px;
   }
 
   .icon__section {
@@ -99,10 +100,32 @@ $color_1: #838d99;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  padding: 8px;
+  margin: 24px 0 0 0;
 }
 
 .answered__section .image__section img {
   border-radius: 50%;
   width: 28px;
   height: 28px;
+  cursor: pointer;
+  vertical-align: bottom;
+  margin-right: -6px;
+}
+
+.answered__section .image__section p {
+  font-size: 14px;
+  line-height: 24px;
+  color: #4b587c;
+  white-space: nowrap;
+  font-family: $font-family-regular;
+  margin-left: 20px;
+}
+
+.answered__section .more__product__sections p {
+  font-size: 12px;
+  line-height: 20px;
+  margin-top: 8px;
+  color: #005ef6;
+  font-family: $font-family-regular;  
 }

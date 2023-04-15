@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 
 // styles
 import "../styles/hunt/_searchbox.scss";
+import SingleProduct from "./SingleProduct";
 
 const SearchProduct = () => {
   return (
@@ -57,9 +58,12 @@ const SearchProduct = () => {
             />
             <p>+ 1,581 others answered</p>
           </div>
-          <div>More questions</div>
+          <div className="more__product__sections">
+            <p>More questions</p>
+          </div>
         </div>
       </div>
+      <SingleProduct />
     </Fragment>
   );
 };

@@ -1,14 +1,18 @@
 .product__section_layout {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 40px;
 
   .left_section {
     min-width: 766px;
     max-height: 100%;
   }
-  
+
   .right_section {
     max-width: 450px;
     max-height: 100%;
+    border-left: 1px solid #d9e1ec;
+    margin-left: 64px;
+    padding-left: 71px;
   }
 }
