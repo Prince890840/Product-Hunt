@@ -3,57 +3,16 @@ import React, { Fragment, useCallback, useEffect, useState } from "react";
 // styles
 import "../styles/hunt/_singleproduct.scss";
 
-// service
-// import getProducts from "../services/fetchproducts.service";
-
 // components
 import ProductItem from "./ProductItem";
-import { gql, useQuery } from "@apollo/client";
+
+// apollo/client
+import { useQuery } from "@apollo/client";
+
+// query
+import { GET_POSTS } from "../queries/FetchProducts";
 
 const SingleProduct = () => {
-  /*   const [products, setProducts] = useState([]);
-
-  getProducts()
-    .then((edges) => setProducts(edges))
-    .catch((error) => console.log(error)); */
-
-  // =================================================
-
-  const GET_POSTS = gql`
-    query GetPosts($after: String) {
-      posts(after: $after) {
-        edges {
-          node {
-            id
-            name
-            description
-            votesCount
-            website
-            tagline
-            productLinks {
-              type
-              url
-            }
-            thumbnail {
-              url
-            }
-            media {
-              videoUrl
-              type
-              url
-            }
-          }
-        }
-        pageInfo {
-          startCursor
-          endCursor
-          hasPreviousPage
-          hasNextPage
-        }
-      }
-    }
-  `;
-
   const [endCursor, setEndCursor] = useState(null);
   const { data, loading, fetchMore } = useQuery(GET_POSTS, {
     variables: { after: endCursor },
@@ -79,28 +38,7 @@ const SingleProduct = () => {
         },
       });
     }
-  });
-
-  /*   const handleScroll = useCallback(() => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (
-      scrollTop + clientHeight >= scrollHeight - 100 &&
-      data?.posts?.pageInfo?.hasNextPage
-    ) {
-      fetchMore({
-        variables: { after: data.posts.pageInfo.endCursor },
-        updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return prev;
-          return {
-            posts: {
-              ...fetchMoreResult.posts,
-              edges: [...prev.posts.edges, ...fetchMoreResult.posts.edges],
-            },
-          };
-        },
-      });
-    }
-  }); */
+  }, [data, fetchMore]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -112,7 +50,7 @@ const SingleProduct = () => {
   return (
     <Fragment>
       <div className="header__section">
-        <h1>Fresh products Friday</h1>
+        <h1>Your next favorite thing 👇</h1>
         <form>
           <select name="product_filter" id="product_filter">
             <option value="featured">Featured</option>
