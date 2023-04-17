@@ -6,7 +6,15 @@ import "../styles/hunt/_trendingtopics.scss";
 // components
 import ProductSectionLayout from "./ProductSectionLayout";
 
+// apollo/client
+import { useQuery } from "@apollo/client";
+
+// query
+import { FETCH_TOP_TOPICS } from "../queries/FetchTopics";
+
 const TrendingTopics = () => {
+  const { loading, data } = useQuery(FETCH_TOP_TOPICS);
+
   return (
     <Fragment>
       <div className="trending__topics__filter">
@@ -44,11 +52,13 @@ const TrendingTopics = () => {
         </div>
         <div className="trending__topics">
           <div className="label">Trending topics:</div>
-          <div className="topic">Artificial Intelligence</div>
-          <div className="topic">Productivity</div>
-          <div className="topic">Marketing</div>
-          <div className="topic">Developer Tools</div>
-          <div className="topic">Tech</div>
+          {loading && <p>Loading...</p>}
+          {data?.topics?.edges?.length > 0 &&
+            data?.topics?.edges?.map((topic, index) => (
+              <div key={index} className="topic">
+                {topic?.node?.name}
+              </div>
+            ))}
         </div>
       </div>
       <ProductSectionLayout />

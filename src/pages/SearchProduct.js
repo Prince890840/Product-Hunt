@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 
 // styles
 import "../styles/hunt/_searchbox.scss";
+
+// components
 import SingleProduct from "./SingleProduct";
 
 const SearchProduct = () => {
