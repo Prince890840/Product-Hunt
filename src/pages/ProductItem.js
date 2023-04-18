@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 // styles
 import "../styles/hunt/_productitem.scss";
 
 // components
 import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
+import ProductModal from "./ProductModal";
 
 const ProductItem = ({ product }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
   return (
     <>
-      <div className="product__zone">
+      <ProductModal
+        openModal={openModal}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        product={product}
+      />
+      <div className="product__zone" onClick={openModal}>
         <div className="product__image">
           {product?.node?.thumbnail && (
             <ProductThumbnail thumbnailUrl={product?.node?.thumbnail?.url} />
@@ -25,7 +38,9 @@ const ProductItem = ({ product }) => {
         </div>
         <div className="product__vote">
           <div className="vote__box">
-            <button>{product?.node?.votesCount}</button>
+            <button>
+              {product?.node?.votesCount ? product?.node?.votesCount : "-"}
+            </button>
           </div>
         </div>
       </div>

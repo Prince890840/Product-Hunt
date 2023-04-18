@@ -1,35 +1,50 @@
 import { gql } from "@apollo/client";
 
 export const GET_POSTS = gql`
-  query GetPosts($after: String, $order: PostsOrder) {
-    posts(after: $after, order: $order) {
+  query Posts($order: CommentsOrder) {
+    posts {
       edges {
         node {
           id
           name
-          description
+          reviewsCount
+          reviewsRating
+          slug
+          userId
           votesCount
-          website
+          description
+          commentsCount
           tagline
-          productLinks {
-            type
+          website
+          url
+          thumbnail {
+            videoUrl
             url
           }
-          thumbnail {
-            url
+          comments(order: $order) {
+            nodes {
+              body
+            }
           }
           media {
             videoUrl
             type
             url
           }
+          user {
+            id
+            profileImage
+            name
+            coverImage
+            headline
+          }
         }
       }
       pageInfo {
-        startCursor
         endCursor
-        hasPreviousPage
         hasNextPage
+        hasPreviousPage
+        startCursor
       }
     }
   }
