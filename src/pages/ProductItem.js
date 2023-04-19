@@ -7,7 +7,8 @@ import "../styles/hunt/_productitem.scss";
 import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
 import ProductModal from "./ProductModal";
 
-const ProductItem = ({ product }) => {
+const ProductItem = (props) => {
+  const { product } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -16,12 +17,14 @@ const ProductItem = ({ product }) => {
 
   return (
     <>
-      <ProductModal
-        openModal={openModal}
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        product={product}
-      />
+      {isOpen && (
+        <ProductModal
+          {...props}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          product={product}
+        />
+      )}
       <div className="product__zone" onClick={openModal}>
         <div className="product__image">
           {product?.node?.thumbnail && (

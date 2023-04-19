@@ -29,6 +29,7 @@ const SingleProduct = () => {
       fetchMore({
         variables: { after: data?.posts?.pageInfo?.endCursor },
         updateQuery: (previousResult, { fetchMoreResult }) => {
+
           const newEdges = fetchMoreResult?.posts?.edges;
           const pageInfo = fetchMoreResult?.posts?.pageInfo;
 
@@ -42,7 +43,7 @@ const SingleProduct = () => {
 
           return {
             posts: {
-              edges: [...previousResult?.posts?.edges, ...filteredEdges],
+              edges: [...previousResult?.posts?.edges, ...newEdges],
               pageInfo,
             },
           };

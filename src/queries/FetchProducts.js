@@ -31,13 +31,6 @@ export const GET_POSTS = gql`
             type
             url
           }
-          user {
-            id
-            profileImage
-            name
-            coverImage
-            headline
-          }
         }
       }
       pageInfo {
