@@ -1,13 +1,10 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 
 // styles
 import "../styles/hunt/_singleproduct.scss";
 
 // components
 import ProductItem from "./ProductItem";
-
-// Intersection-observer
-import { InView } from "react-intersection-observer";
 
 // apollo/client
 import { useQuery } from "@apollo/client";
@@ -17,14 +14,15 @@ import { GET_POSTS } from "../queries/FetchProducts";
 
 const SingleProduct = () => {
   const [after, setAfter] = useState(null);
-
   const [allPosts, setAllPosts] = useState([]);
-  
+  const [hasMore, setHasMore] = useState(false);
+
   const { loading, fetchMore } = useQuery(GET_POSTS, {
     variables: { after },
     onCompleted: (data) => {
       if (!allPosts.length) {
         const { pageInfo, edges } = data.posts;
+        setHasMore(pageInfo.hasNextPage);
         setAfter(pageInfo?.endCursor);
         setAllPosts(edges);
       }
@@ -33,18 +31,36 @@ const SingleProduct = () => {
 
   const intersectionObserverRef = useRef();
 
-  const handleIntersection = async (inView) => {
-    if (inView && !loading) {
-      const { data } = await fetchMore({
-        variables: {
-          after: after,
-        },
-      });
-      const { pageInfo, edges } = data.posts;
-      setAfter(pageInfo?.endCursor);
-      setAllPosts((prevPosts) => [...prevPosts, ...edges]);
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "100px",
+      threshold: 1.0,
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && hasMore && !loading) {
+        fetchMore({
+          variables: {
+            after: after,
+          },
+        }).then(({ data }) => {
+          const { pageInfo, edges } = data.posts;
+          setHasMore(pageInfo.hasNextPage);
+          setAfter(pageInfo?.endCursor);
+          setAllPosts((prevPosts) => [...prevPosts, ...edges]);
+        });
+      }
+    }, options);
+
+    if (intersectionObserverRef.current) {
+      observer.observe(intersectionObserverRef.current);
     }
-  };
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasMore, loading, fetchMore, after]);
 
   return (
     <Fragment>
@@ -60,9 +76,7 @@ const SingleProduct = () => {
       {allPosts.map((product) => (
         <ProductItem key={product.node.id} product={product} />
       ))}
-      <InView ref={intersectionObserverRef} onChange={handleIntersection}>
-        <div>Loading more posts...</div>
-      </InView>
+      <div ref={intersectionObserverRef}>Loading more posts...</div>
     </Fragment>
   );
 };

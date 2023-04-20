@@ -25,7 +25,11 @@ const ProductItem = (props) => {
           product={product}
         />
       )}
-      <div key={product?.node?.id} className="product__zone" onClick={openModal}>
+      <div
+        key={product?.node?.id}
+        className="product__zone"
+        onClick={openModal}
+      >
         <div className="product__image">
           {product?.node?.thumbnail && (
             <ProductThumbnail thumbnailUrl={product?.node?.thumbnail?.url} />
