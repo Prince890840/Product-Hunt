@@ -1,30 +1,25 @@
 import { gql } from "@apollo/client";
 
 export const GET_POSTS = gql`
-  query Posts($order: CommentsOrder) {
-    posts {
+  query posts($first: Int, $after: String) {
+    posts(first: $first, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
       edges {
+        cursor
         node {
           id
-          name
-          reviewsCount
-          reviewsRating
-          slug
-          userId
-          votesCount
-          description
-          commentsCount
           tagline
-          website
-          url
+          name
+          commentsCount
+          votesCount
           thumbnail {
             videoUrl
             url
-          }
-          comments(order: $order) {
-            nodes {
-              body
-            }
           }
           media {
             videoUrl
@@ -32,12 +27,6 @@ export const GET_POSTS = gql`
             url
           }
         }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
       }
     }
   }

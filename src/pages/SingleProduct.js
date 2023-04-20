@@ -1,10 +1,13 @@
-import React, { Fragment, useCallback, useEffect, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 
 // styles
 import "../styles/hunt/_singleproduct.scss";
 
 // components
 import ProductItem from "./ProductItem";
+
+// Intersection-observer
+import { InView } from "react-intersection-observer";
 
 // apollo/client
 import { useQuery } from "@apollo/client";
@@ -13,54 +16,34 @@ import { useQuery } from "@apollo/client";
 import { GET_POSTS } from "../queries/FetchProducts";
 
 const SingleProduct = () => {
-  const [endCursor, setEndCursor] = useState(null);
+  const [after, setAfter] = useState(null);
 
-  const [filteredProductValue, setFilterProductValue] = useState(null);
-
-  const { data, loading, fetchMore } = useQuery(GET_POSTS, {
-    variables: filteredProductValue
-      ? { after: endCursor, order: filteredProductValue }
-      : { after: endCursor },
+  const [allPosts, setAllPosts] = useState([]);
+  
+  const { loading, fetchMore } = useQuery(GET_POSTS, {
+    variables: { after },
+    onCompleted: (data) => {
+      if (!allPosts.length) {
+        const { pageInfo, edges } = data.posts;
+        setAfter(pageInfo?.endCursor);
+        setAllPosts(edges);
+      }
+    },
   });
 
-  const handleScroll = useCallback(() => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
-      fetchMore({
-        variables: { after: data?.posts?.pageInfo?.endCursor },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
+  const intersectionObserverRef = useRef();
 
-          const newEdges = fetchMoreResult?.posts?.edges;
-          const pageInfo = fetchMoreResult?.posts?.pageInfo;
-
-          // Remove duplicates from the newEdges array
-          const filteredEdges = newEdges.filter((newEdge) => {
-            const ids = previousResult.posts.edges.map((edge) => edge.node.id);
-            return !ids.includes(newEdge.node.id);
-          });
-
-          setEndCursor(pageInfo.endCursor);
-
-          return {
-            posts: {
-              edges: [...previousResult?.posts?.edges, ...newEdges],
-              pageInfo,
-            },
-          };
+  const handleIntersection = async (inView) => {
+    if (inView && !loading) {
+      const { data } = await fetchMore({
+        variables: {
+          after: after,
         },
       });
+      const { pageInfo, edges } = data.posts;
+      setAfter(pageInfo?.endCursor);
+      setAllPosts((prevPosts) => [...prevPosts, ...edges]);
     }
-  }, [data, fetchMore]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
-
-  const onProductFilterSelected = (event) => {
-    setFilterProductValue(event.target.value);
   };
 
   return (
@@ -68,23 +51,20 @@ const SingleProduct = () => {
       <div className="header__section">
         <h1>Your next favorite thing 👇</h1>
         <form>
-          <select name="order" id="order" onChange={onProductFilterSelected}>
+          <select name="order" id="order">
             <option value="FEATURED_AT">Featured</option>
             <option value="NEWEST">Newest</option>
           </select>
         </form>
       </div>
-      <div onScroll={handleScroll}>
-        {data?.posts?.edges &&
-          data?.posts?.edges?.length > 0 &&
-          data?.posts?.edges?.map((product, index) => (
-            <ProductItem key={index} product={product} />
-          ))}
-        {loading && <p>Loading...</p>}
-      </div>
+      {allPosts.map((product) => (
+        <ProductItem key={product.node.id} product={product} />
+      ))}
+      <InView ref={intersectionObserverRef} onChange={handleIntersection}>
+        <div>Loading more posts...</div>
+      </InView>
     </Fragment>
   );
 };
 
 export default SingleProduct;
-
