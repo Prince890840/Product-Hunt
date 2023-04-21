@@ -16,10 +16,10 @@ const SingleProduct = () => {
   const [allPosts, setAllPosts] = useState([]);
 
   const { loading, fetchMore } = useQuery(GET_POSTS, {
-    variables: {},
+    variables: { first: 2 },
     onCompleted: (data) => {
       if (!allPosts.length) {
-        const { edges } = data.posts;
+        const { edges } = data?.posts;
         setAllPosts(edges);
       }
     },
@@ -37,14 +37,18 @@ const SingleProduct = () => {
     const observer = new IntersectionObserver(async ([entry]) => {
       if (entry.isIntersecting && !loading) {
         try {
-          const lastPost = allPosts[allPosts.length - 1];
-          const { data } = await fetchMore({
-            variables: {
-              after: lastPost.cursor,
-            },
-          });
-          const { edges } = data.posts;
-          setAllPosts((prevPosts) => [...prevPosts, ...edges]);
+          if (allPosts.length > 0) {
+            const lastPost = allPosts[allPosts?.length - 1];
+            const { data } = await fetchMore({
+              variables: {
+                after: lastPost?.cursor,
+              },
+            });
+            const { edges } = data?.posts;
+            setAllPosts((prevPosts) => [...prevPosts, ...edges]);
+          } else {
+            return;
+          }
         } catch (error) {
           console.log(error);
         }

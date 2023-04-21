@@ -9,6 +9,9 @@ import ProductModal from "./ProductModal";
 
 const ProductItem = (props) => {
   const { product } = props;
+
+  const topics = product?.node.topics.edges;
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -32,16 +35,43 @@ const ProductItem = (props) => {
           )}
         </div>
         <div className="product__content">
-          <h4>{product?.node?.name}</h4>
+          <h4>
+            {product?.node?.name}
+            <a
+              href={product.node.website}
+              className="website__link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                width="13"
+                height="14"
+                viewBox="0 0 13 14"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  stroke="#4B587C"
+                  strokeWidth="1.5"
+                  fill="none"
+                  fillRule="evenodd"
+                >
+                  <path d="M9.6 4H4.2a2.4 2.4 0 0 0-2.4 2.4V10"></path>
+                  <path d="M6.6 7l3-3-3-3M12 10v3H0"></path>
+                </g>
+              </svg>
+            </a>
+          </h4>
           <p>{product?.node?.tagline}</p>
           <div className="tag__section">
-            <p>Free</p>
-            <p>Productivity</p>
+            {topics?.map((topic, index) => (
+              <p key={index}>{topic.node.name}</p>
+            ))}
           </div>
         </div>
         <div className="product__vote">
           <div className="vote__box">
             <button>
+              <div className="animated__arrow-image"></div>
               {product?.node?.votesCount ? product?.node?.votesCount : "-"}
             </button>
           </div>

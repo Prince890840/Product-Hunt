@@ -102,23 +102,25 @@ const ProductModal = (props) => {
             </div>
           </div>
           <Slider {...settings}>
-            {product.node.media.map((item, index) => (
-              <div key={index}>
-                <img
-                  src={item.url}
-                  style={{
-                    width: "368px",
-                    height: "220px",
-                    paddingRight: "44px",
-                  }}
-                  alt={item.type}
-                />
-              </div>
-            ))}
+            {product?.node?.media &&
+              product?.node?.media?.map((item, index) => (
+                <div key={index}>
+                  <img
+                    src={item.url}
+                    style={{
+                      width: "368px",
+                      height: "220px",
+                      paddingRight: "44px",
+                    }}
+                    alt={item.type}
+                  />
+                </div>
+              ))}
           </Slider>
-          {product?.node?.comments?.nodes?.map((comment, index) => (
-            <Comment key={index}>{comment?.body}</Comment>
-          ))}
+          {product?.node?.comments &&
+            product?.node?.comments?.nodes?.map((comment, index) => (
+              <Comment key={index}>{comment?.body}</Comment>
+            ))}
         </ModalContent>
       </Modal>
     </>,
