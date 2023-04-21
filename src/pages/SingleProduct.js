@@ -13,65 +13,41 @@ import { useQuery } from "@apollo/client";
 import { GET_POSTS } from "../queries/FetchProducts";
 
 const SingleProduct = () => {
-  const [after, setAfter] = useState(null);
   const [allPosts, setAllPosts] = useState([]);
-  const [hasMore, setHasMore] = useState(false);
 
   const { loading, fetchMore } = useQuery(GET_POSTS, {
-    variables: { after },
+    variables: {},
     onCompleted: (data) => {
       if (!allPosts.length) {
-        const { pageInfo, edges } = data.posts;
-        setHasMore(pageInfo.hasNextPage);
-        setAfter(pageInfo?.endCursor);
+        const { edges } = data.posts;
         setAllPosts(edges);
       }
     },
-    notifyOnNetworkStatusChange: true,
-    fetchPolicy: "cache-and-network",
   });
 
   const intersectionObserverRef = useRef();
-
-  const buildThresholdList = () => {
-    let thresholds = [];
-    let numSteps = 20;
-
-    for (let i = 1.0; i <= numSteps; i++) {
-      let ratio = i / numSteps;
-      thresholds.push(ratio);
-    }
-
-    thresholds.push(0);
-    return thresholds;
-  };
 
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "100px",
-      threshold: buildThresholdList(),
+      threshold: 1.0,
     };
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (
-        entry.isIntersecting &&
-        hasMore &&
-        !loading &&
-        entry.intersectionRatio >= 0.75
-      ) {
-        fetchMore({
-          variables: {
-            after: after,
-          },
-        }).then(({ data }) => {
-          const { pageInfo, edges } = data.posts;
-          setHasMore(pageInfo.hasNextPage);
-          setAfter(pageInfo?.endCursor);
+    const observer = new IntersectionObserver(async ([entry]) => {
+      if (entry.isIntersecting && !loading) {
+        try {
+          const lastPost = allPosts[allPosts.length - 1];
+          const { data } = await fetchMore({
+            variables: {
+              after: lastPost.cursor,
+            },
+          });
+          const { edges } = data.posts;
           setAllPosts((prevPosts) => [...prevPosts, ...edges]);
-        });
-      } else {
-        return;
+        } catch (error) {
+          console.log(error);
+        }
       }
     }, options);
 
@@ -82,7 +58,7 @@ const SingleProduct = () => {
     return () => {
       observer.disconnect();
     };
-  }, [hasMore, loading, fetchMore, after]);
+  }, [loading, fetchMore, allPosts]);
 
   return (
     <Fragment>
