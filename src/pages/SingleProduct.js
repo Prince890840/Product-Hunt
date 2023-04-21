@@ -27,19 +27,39 @@ const SingleProduct = () => {
         setAllPosts(edges);
       }
     },
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: "cache-and-network",
   });
 
   const intersectionObserverRef = useRef();
+
+  const buildThresholdList = () => {
+    let thresholds = [];
+    let numSteps = 20;
+
+    for (let i = 1.0; i <= numSteps; i++) {
+      let ratio = i / numSteps;
+      thresholds.push(ratio);
+    }
+
+    thresholds.push(0);
+    return thresholds;
+  };
 
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "100px",
-      threshold: 1.0,
+      threshold: buildThresholdList(),
     };
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && hasMore && !loading) {
+      if (
+        entry.isIntersecting &&
+        hasMore &&
+        !loading &&
+        entry.intersectionRatio >= 0.75
+      ) {
         fetchMore({
           variables: {
             after: after,
@@ -50,6 +70,8 @@ const SingleProduct = () => {
           setAfter(pageInfo?.endCursor);
           setAllPosts((prevPosts) => [...prevPosts, ...edges]);
         });
+      } else {
+        return;
       }
     }, options);
 
@@ -73,8 +95,8 @@ const SingleProduct = () => {
           </select>
         </form>
       </div>
-      {allPosts.map((product) => (
-        <ProductItem key={product.node.id} product={product} />
+      {allPosts.map((product, index) => (
+        <ProductItem key={index} product={product} />
       ))}
       <div ref={intersectionObserverRef}>Loading more posts...</div>
     </Fragment>
