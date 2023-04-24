@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import "../styles/hunt/_searchbox.scss";
 
 // components
-import SingleProduct from "./SingleProduct";
+import Products from "./Products";
 
 const SearchProduct = () => {
   return (
@@ -65,7 +65,7 @@ const SearchProduct = () => {
           </div>
         </div>
       </div>
-      <SingleProduct />
+      <Products />
     </Fragment>
   );
 };

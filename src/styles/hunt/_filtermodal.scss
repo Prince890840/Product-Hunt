@@ -1,0 +1,156 @@
+@import "./fonts";
+
+$font-family_1: sans-serif;
+$background-color_1: rgba(0, 0, 0, 0.5);
+$background-color_2: #fff;
+$background-color_3: transparent;
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: $background-color_3;
+  outline: none;
+}
+
+.search__product__section {
+  $color_1: #838d99;
+
+  .search__box {
+    font-size: 16px;
+    line-height: normal;
+    background: #f5f8ff;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
+    background-repeat: no-repeat;
+    background-position: 14px 16px;
+    background-size: 16px 16px;
+    border-radius: 5px;
+    padding: 16px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    color: #000000;
+    height: 56px;
+    border: 1px solid #d9e1ec;
+
+    &::placeholder {
+      color: $color_1;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.trending-topics {
+  padding: 12px;
+
+  .trending__topics_title {
+    font-size: 12px;
+    line-height: 20px;
+    color: #4b587c;
+    margin-bottom: 8px;
+  }
+
+  .topics__link {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .topics__link .item {
+    background-color: #fff;
+    user-select: none;
+    transition: background-color 0.2s ease-in-out;
+    border: 1px solid rgba(217, 225, 236, 0.7);
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #4b587c;
+    padding: 4px 8px;
+    font-family: $font-family-semibold;
+    cursor: pointer;
+    min-height: auto;
+    min-width: auto;
+  }
+
+  .spacing {
+    margin: 0 0 0 8px;
+  }
+
+  .topics__link .item:hover {
+    outline: 0;
+    background-color: #fef6f2;
+  }
+}
+
+.time-filter-section .filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.time-filter-section .filter:hover {
+  outline: 0;
+  background-color: #fef6f2;
+}
+
+.time-filter-section .heading__section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-filter-section .heading__section .heading__content {
+  margin-left: 8px;
+}
+
+.time-filter-section .heading__section .heading__content h3 {
+  font-size: 14px;
+  line-height: 24px;
+  color: #21293c;
+}
+
+.time-filter-section .heading__section .heading__content p {
+  color: #4b587c;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.time-filter-section .filter .time__travel_button p {
+  border: 1px solid #d9e1ec;
+  border-radius: 5px;
+  opacity: 0.7;
+  font-size: 12px;
+  line-height: 20px;
+  color: #4b587c;
+  padding: 4px 8px;
+  text-align: center;
+}
+
+.filter__image_section {
+  background-color: #db4e7a;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.filter__image_section svg {
+  margin: 8px;
+}
+
+.month__filter {
+  background-color: #51b4d0;
+}
+
+.year__filter {
+  background-color: #6466e9;
+}

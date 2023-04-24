@@ -12,7 +12,7 @@ import { useQuery } from "@apollo/client";
 // query
 import { GET_POSTS } from "../queries/FetchProducts";
 
-const SingleProduct = () => {
+const Products = () => {
   const [allPosts, setAllPosts] = useState([]);
 
   const { loading, fetchMore } = useQuery(GET_POSTS, {
@@ -83,4 +83,4 @@ const SingleProduct = () => {
   );
 };
 
-export default SingleProduct;
+export default Products;
