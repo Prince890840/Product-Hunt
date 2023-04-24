@@ -18,15 +18,9 @@ const FilterProduct = () => {
   const [totalCounts, setTotalCounts] = useState("");
 
   const location = useLocation();
-
   const pathname = location.pathname;
   const parts = pathname.split("/");
   const splittedDate = parts.slice(2, 5).join("/");
-
-  const date = new Date(splittedDate);
-
-  var now = new Date();
-  var currentDateISO = now.toISOString();
 
   const { loading, fetchMore } = useQuery(GET_FILTERED_PRODUCTS, {
     variables: {
@@ -57,11 +51,12 @@ const FilterProduct = () => {
         try {
           if (allPosts.length > 0) {
             const lastPost = allPosts[allPosts?.length - 1];
+            const date = new Date(splittedDate);
             const { data } = await fetchMore({
               variables: {
                 after: lastPost?.cursor,
-                postedBefore: "2023-04-24T00:00:00.000Z",
-                postedAfter: "2023-04-23T00:00:00.000Z",
+                postedBefore: new Date().toISOString(),
+                postedAfter: date.toISOString(),
               },
             });
             const { edges, totalCount } = data?.posts;
@@ -83,7 +78,7 @@ const FilterProduct = () => {
     return () => {
       observer.disconnect();
     };
-  }, [loading, fetchMore, allPosts, totalCounts]);
+  }, [loading, fetchMore, allPosts, totalCounts, splittedDate]);
 
   return (
     <div className="filter-products-container">
