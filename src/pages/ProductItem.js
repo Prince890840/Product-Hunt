@@ -7,6 +7,9 @@ import "../styles/hunt/_productitem.scss";
 import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
 import ProductModal from "./ProductModal";
 
+// prop-types
+import PropTypes from "prop-types";
+
 const ProductItem = (props) => {
   const { product } = props;
 
@@ -79,6 +82,10 @@ const ProductItem = (props) => {
       </div>
     </>
   );
+};
+
+ProductItem.propTypes = {
+  product: PropTypes.object.isRequired,
 };
 
 export default ProductItem;

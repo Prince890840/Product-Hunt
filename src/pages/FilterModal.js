@@ -9,13 +9,16 @@ import {
   Modal,
   ModalContent,
   ModalShadow,
-} from "../components/Modal/FilterModal";
+} from "../components/Modal/FilterModalStyle";
 
 // react-router-dom
 import { useNavigate } from "react-router-dom";
 
 // react-top-loading bar
 import LoadingBar from "react-top-loading-bar";
+
+// prop-types
+import PropTypes from "prop-types";
 
 const FilterModal = (props) => {
   const { isOpen, setIsOpen } = props;
@@ -32,12 +35,16 @@ const FilterModal = (props) => {
 
     let formattedDate = `${year}/${month}/${day}`;
 
-    if (type === "Yesterday") {
-      navigate(`/time-travel/${formattedDate}`);
-    } else if (type === "lastMonth") {
-      navigate(`/time-travel/${year}/${month}`);
-    } else {
-      navigate(`/time-travel/${year}`);
+    switch (type) {
+      case "Yesterday":
+        navigate(`/time-travel/${formattedDate}`);
+        break;
+      case "lastMonth":
+        navigate(`/time-travel/${year}/${month}`);
+        break;
+      default:
+        navigate(`/time-travel/${year}`);
+        break;
     }
 
     setIsOpen(!isOpen);
@@ -181,6 +188,11 @@ const FilterModal = (props) => {
     </>,
     document.getElementById("app-modal")
   );
+};
+
+FilterModal.propTypes = {
+  isOpen: PropTypes.oneOf([true, false]),
+  setIsOpen: PropTypes.func,
 };
 
 export default FilterModal;

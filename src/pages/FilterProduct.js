@@ -11,22 +11,48 @@ import { useQuery } from "@apollo/client";
 
 // query
 import { GET_FILTERED_PRODUCTS } from "../queries/FilterredProductQuery";
+
+// react-router-dom
 import { useLocation } from "react-router-dom";
 
 const FilterProduct = () => {
   const [allPosts, setAllPosts] = useState([]);
+
   const [totalCounts, setTotalCounts] = useState("");
 
+  const [postedBefore, setPostedBefore] = useState(new Date().toISOString());
+
+  const [postedAfter, setPostedAfter] = useState(new Date().toISOString());
+
   const location = useLocation();
+
   const pathname = location.pathname;
+
   const parts = pathname.split("/");
+  
   const splittedDate = parts.slice(2, 5).join("/");
+
+  useEffect(() => {
+    const now = new Date();
+    const date = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+    );
+    const isoString = date.toISOString(); // outputs "2023-04-25T00:00:00.000Z"
+
+    const yesterday = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 1)
+    );
+    const dayBeforeDate = yesterday.toISOString();
+
+    setPostedBefore(isoString);
+    setPostedAfter(dayBeforeDate);
+  }, [splittedDate]);
 
   const { loading, fetchMore } = useQuery(GET_FILTERED_PRODUCTS, {
     variables: {
       first: 2,
-      postedBefore: "2023-04-24T00:00:00.000Z",
-      postedAfter: "2023-04-23T00:00:00.000Z",
+      postedBefore: postedBefore,
+      postedAfter: postedAfter,
     },
     onCompleted: (data) => {
       if (!allPosts.length) {
@@ -35,6 +61,7 @@ const FilterProduct = () => {
         setTotalCounts(totalCount);
       }
     },
+    fetchPolicy: "cache-first",
   });
 
   const intersectionObserverRef = useRef();

@@ -15,14 +15,21 @@ import { GET_POSTS } from "../queries/FetchProducts";
 const Products = () => {
   const [allPosts, setAllPosts] = useState([]);
 
+  const [filteredProduct, setFilteredProduct] = useState(null);
+
   const { loading, fetchMore } = useQuery(GET_POSTS, {
-    variables: { first: 2 },
+    variables: filteredProduct
+      ? { first: 2, order: filteredProduct }
+      : {
+          first: 2,
+        },
     onCompleted: (data) => {
       if (!allPosts.length) {
         const { edges } = data?.posts;
         setAllPosts(edges);
       }
     },
+    fetchPolicy: "cache-first",
   });
 
   const intersectionObserverRef = useRef();
@@ -42,6 +49,7 @@ const Products = () => {
             const { data } = await fetchMore({
               variables: {
                 after: lastPost?.cursor,
+                order: filteredProduct,
               },
             });
             const { edges } = data?.posts;
@@ -62,14 +70,18 @@ const Products = () => {
     return () => {
       observer.disconnect();
     };
-  }, [loading, fetchMore, allPosts]);
+  }, [loading, fetchMore, allPosts, filteredProduct]);
+
+  const getFilteredProducts = (event) => {
+    setFilteredProduct(event.target.value);
+  };
 
   return (
     <Fragment>
       <div className="header__section">
         <h1>Your next favorite thing 👇</h1>
         <form>
-          <select name="order" id="order">
+          <select name="order" id="order" onChange={getFilteredProducts}>
             <option value="FEATURED_AT">Featured</option>
             <option value="NEWEST">Newest</option>
           </select>

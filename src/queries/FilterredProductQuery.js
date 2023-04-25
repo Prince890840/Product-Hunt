@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_FILTERED_PRODUCTS = gql`
-  query Edges(
+  query FilteredPosts(
     $first: Int
     $postedBefore: DateTime
     $postedAfter: DateTime

@@ -1,7 +1,14 @@
 import React, { useRef, useState } from "react";
+
 import "./_header.scss";
+
+// react-router-dom
 import { Link } from "react-router-dom";
+
+// components
 import FilterModal from "../../pages/FilterModal";
+
+// react-top-loading-bar
 import LoadingBar from "react-top-loading-bar";
 
 const Header = () => {
@@ -20,9 +27,9 @@ const Header = () => {
       <header>
         <nav className="nav__container">
           <div className="navigation__section">
-            <a
+            <Link
               aria-label="Product Hunt Logo"
-              href="/"
+              to="/"
               onClick={() => ref.current.complete()}
             >
               <svg
@@ -42,7 +49,7 @@ const Header = () => {
                   ></path>
                 </g>
               </svg>
-            </a>
+            </Link>
 
             <div className="search__product__section" onClick={openModal}>
               <form>

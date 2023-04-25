@@ -11,13 +11,15 @@ import {
 
 // component
 import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
+import styled from "styled-components";
 
 // slider
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import styled from "styled-components";
+// prop-types
+import PropTypes from "prop-types";
 
 const Comment = styled.div`
   white-space: pre-wrap;
@@ -126,6 +128,12 @@ const ProductModal = (props) => {
     </>,
     document.getElementById("app-modal")
   );
+};
+
+ProductModal.propTypes = {
+  isOpen: PropTypes.oneOf([true, false]),
+  setIsOpen: PropTypes.func,
+  product: PropTypes.object.isRequired
 };
 
 export default ProductModal;
