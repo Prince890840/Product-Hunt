@@ -22,37 +22,33 @@ const FilterProduct = () => {
 
   const [postedBefore, setPostedBefore] = useState(new Date().toISOString());
 
-  const [postedAfter, setPostedAfter] = useState(new Date().toISOString());
-
   const location = useLocation();
 
   const pathname = location.pathname;
 
   const parts = pathname.split("/");
-  
-  const splittedDate = parts.slice(2, 5).join("/");
 
-  useEffect(() => {
-    const now = new Date();
-    const date = new Date(
-      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-    );
-    const isoString = date.toISOString(); // outputs "2023-04-25T00:00:00.000Z"
-
-    const yesterday = new Date(
-      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 1)
-    );
-    const dayBeforeDate = yesterday.toISOString();
-
-    setPostedBefore(isoString);
-    setPostedAfter(dayBeforeDate);
-  }, [splittedDate]);
+  const getUpdatedDate = () => {
+    let formatedDate;
+    if (parts.length === 5) {
+      // yesterday
+      formatedDate = parts.slice(2, 5).join("/");
+    } else if (parts.length === 4) {
+      // month
+      formatedDate = parts.slice(2, 4).join("/");
+    } else {
+      // year
+      formatedDate = parts.slice(2, 3).join("/");
+    }
+    const date = new Date(formatedDate);
+    return date.toISOString();
+  };
 
   const { loading, fetchMore } = useQuery(GET_FILTERED_PRODUCTS, {
     variables: {
       first: 2,
       postedBefore: postedBefore,
-      postedAfter: postedAfter,
+      postedAfter: getUpdatedDate(),
     },
     onCompleted: (data) => {
       if (!allPosts.length) {
@@ -78,12 +74,11 @@ const FilterProduct = () => {
         try {
           if (allPosts.length > 0) {
             const lastPost = allPosts[allPosts?.length - 1];
-            const date = new Date(splittedDate);
             const { data } = await fetchMore({
               variables: {
                 after: lastPost?.cursor,
                 postedBefore: new Date().toISOString(),
-                postedAfter: date.toISOString(),
+                postedAfter: getUpdatedDate(),
               },
             });
             const { edges, totalCount } = data?.posts;
@@ -105,7 +100,7 @@ const FilterProduct = () => {
     return () => {
       observer.disconnect();
     };
-  }, [loading, fetchMore, allPosts, totalCounts, splittedDate]);
+  }, [loading, fetchMore, allPosts, totalCounts]);
 
   return (
     <div className="filter-products-container">
