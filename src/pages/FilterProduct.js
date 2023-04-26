@@ -5,6 +5,7 @@ import "../styles/hunt/_filterproduct.scss";
 
 // components
 import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
+import PaginationButtons from "./PaginationButtons";
 
 // apollo-client
 import { useQuery } from "@apollo/client";
@@ -17,38 +18,60 @@ import { useLocation } from "react-router-dom";
 
 const FilterProduct = () => {
   const [allPosts, setAllPosts] = useState([]);
-
   const [totalCounts, setTotalCounts] = useState("");
-
-  const [postedBefore, setPostedBefore] = useState(new Date().toISOString());
-
   const location = useLocation();
-
   const pathname = location.pathname;
-
   const parts = pathname.split("/");
 
   const getUpdatedDate = () => {
-    let formatedDate;
-    if (parts.length === 5) {
-      // yesterday
-      formatedDate = parts.slice(2, 5).join("/");
-    } else if (parts.length === 4) {
-      // month
-      formatedDate = parts.slice(2, 4).join("/");
-    } else {
-      // year
-      formatedDate = parts.slice(2, 3).join("/");
+    let formatedDate, postedBefore, postedAfter;
+    switch (parts.length) {
+      case 5:
+        formatedDate = parts.slice(2, 5).join("/");
+
+        const date = new Date(formatedDate + " UTC");
+        date.setDate(date.getDate() + 1);
+        date.setUTCHours(0, 0, 0, 0);
+
+        postedBefore = date.toISOString();
+
+        const afterDate = new Date(formatedDate + "UTC");
+        afterDate.setUTCHours(0, 0, 0, 0);
+        afterDate.toISOString();
+
+        postedAfter = afterDate.toISOString();
+
+        break;
+      case 4:
+        formatedDate = parts.slice(2, 4).join("/");
+        postedBefore = null;
+
+        const monthFilter = new Date(formatedDate + "UTC");
+        monthFilter.setDate(1);
+        monthFilter.setUTCHours(0, 0, 0, 0);
+
+        postedAfter = monthFilter.toISOString();
+        break;
+      default:
+        formatedDate = parts.slice(2, 3).join("/");
+        postedBefore = null;
+
+        const yearFilter = new Date(formatedDate + "UTC");
+        yearFilter.setDate(1);
+        yearFilter.setUTCHours(0, 0, 0, 0);
+
+        postedAfter = yearFilter.toISOString();
+        break;
     }
-    const date = new Date(formatedDate);
-    return date.toISOString();
+
+    return { postedBefore, postedAfter };
   };
 
   const { loading, fetchMore } = useQuery(GET_FILTERED_PRODUCTS, {
     variables: {
       first: 2,
-      postedBefore: postedBefore,
-      postedAfter: getUpdatedDate(),
+      postedBefore: getUpdatedDate().postedBefore,
+      postedAfter: getUpdatedDate().postedAfter,
     },
     onCompleted: (data) => {
       if (!allPosts.length) {
@@ -77,8 +100,8 @@ const FilterProduct = () => {
             const { data } = await fetchMore({
               variables: {
                 after: lastPost?.cursor,
-                postedBefore: new Date().toISOString(),
-                postedAfter: getUpdatedDate(),
+                postedBefore: getUpdatedDate().postedBefore,
+                postedAfter: getUpdatedDate().postedAfter,
               },
             });
             const { edges, totalCount } = data?.posts;
@@ -100,18 +123,12 @@ const FilterProduct = () => {
     return () => {
       observer.disconnect();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, fetchMore, allPosts, totalCounts]);
 
   return (
     <div className="filter-products-container">
-      <div className="header-section">
-        <h2>Posts for April 23, 2023 | Product Hunt</h2>
-        <div className="pagination-buttons">
-          <button className="button">←</button>
-          <button className="button button-spacing">Daily</button>
-          <button className="button button-spacing">→</button>
-        </div>
-      </div>
+      <PaginationButtons />
       <div className="product-section">
         <ul className="product-area">
           {allPosts &&
