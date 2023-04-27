@@ -21,7 +21,11 @@ const Products = () => {
   const navigate = useNavigate();
 
   const { loading, fetchMore } = useQuery(GET_POSTS, {
-    variables: { first: 2, order: filteredProduct },
+    variables: filteredProduct
+      ? { first: 2, order: filteredProduct }
+      : {
+          first: 2,
+        },
     onCompleted: (data) => {
       if (!allPosts.length) {
         const { edges } = data?.posts;
