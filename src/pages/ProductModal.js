@@ -20,6 +20,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 // prop-types
 import PropTypes from "prop-types";
+import { GET_SINGLE_POST } from "../queries/FetchSingleProduct";
+import { useQuery } from "@apollo/client";
 
 const Comment = styled.div`
   white-space: pre-wrap;
@@ -40,7 +42,11 @@ const Comment = styled.div`
 `;
 
 const ProductModal = (props) => {
-  const { isOpen, setIsOpen, product } = props;
+  const { isOpen, setIsOpen, postId, slug } = props;
+
+  const { data } = useQuery(GET_SINGLE_POST, {
+    variables: { postId: postId, slug: slug, commentsFirst2: 5 },
+  });
 
   const settings = {
     infinite: true,
@@ -60,16 +66,14 @@ const ProductModal = (props) => {
           </button>
           <div className="modal__main_content">
             <div className="product__image">
-              {product?.node?.thumbnail && (
-                <ProductThumbnail
-                  thumbnailUrl={product?.node?.thumbnail?.url}
-                />
+              {data?.post?.thumbnail && (
+                <ProductThumbnail thumbnailUrl={data?.post?.thumbnail?.url} />
               )}
             </div>
             <div className="product-semi-content">
               <div className="product__details">
-                <h1>{product?.node?.name}</h1>
-                <p>{product?.node?.tagline}</p>
+                <h1>{data?.post?.name}</h1>
+                <p>{data?.post?.tagline}</p>
               </div>
               <div className="product__visit">
                 <div className="dropdown">
@@ -95,17 +99,17 @@ const ProductModal = (props) => {
                 </div>
                 <button className="btn">
                   upvote
-                  {product?.node?.votesCount ? product?.node?.votesCount : ""}
+                  {data?.post?.votesCount ? data?.post?.votesCount : ""}
                 </button>
               </div>
             </div>
             <div className="product-last-section">
-              <p>{product.node.description}</p>
+              <p>{data?.post.description}</p>
             </div>
           </div>
           <Slider {...settings}>
-            {product?.node?.media &&
-              product?.node?.media?.map((item, index) => (
+            {data?.post?.media &&
+              data?.post?.media?.map((item, index) => (
                 <div key={index}>
                   <img
                     src={item.url}
@@ -119,9 +123,9 @@ const ProductModal = (props) => {
                 </div>
               ))}
           </Slider>
-          {product?.node?.comments &&
-            product?.node?.comments?.nodes?.map((comment, index) => (
-              <Comment key={index}>{comment?.body}</Comment>
+          {data?.post?.comments &&
+            data?.post?.comments?.edges?.map((comment, index) => (
+              <Comment key={index}>{comment?.node?.body}</Comment>
             ))}
         </ModalContent>
       </Modal>

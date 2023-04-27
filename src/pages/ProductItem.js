@@ -25,10 +25,10 @@ const ProductItem = (props) => {
     <>
       {isOpen && (
         <ProductModal
-          {...props}
+          postId={product?.node?.id}
+          slug={product?.node?.slug}
           setIsOpen={setIsOpen}
           isOpen={isOpen}
-          product={product}
         />
       )}
       <div className="product__zone" onClick={openModal}>

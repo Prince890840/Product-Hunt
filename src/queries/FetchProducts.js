@@ -11,6 +11,7 @@ export const GET_POSTS = gql`
           name
           website
           votesCount
+          slug
           thumbnail {
             url
           }
