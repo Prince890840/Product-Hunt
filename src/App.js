@@ -7,6 +7,7 @@ import TrendingTopics from "./pages/TrendingTopics";
 import ProductSectionLayout from "./pages/ProductSectionLayout";
 import ErrorController from "./pages/ErrorController";
 import FilterProduct from "./pages/FilterProduct";
+import Products from "./pages/Products";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorController />,
     children: [
       {
-        index: true,
+        path: "/",
         element: <TrendingTopics />,
+        children: [
+          {
+            path: "/:order",
+            element: <Products />,
+          },
+        ],
       },
       {
         path: "",

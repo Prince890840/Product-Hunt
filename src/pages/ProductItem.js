@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 // styles
 import "../styles/hunt/_productitem.scss";
@@ -17,8 +17,25 @@ const ProductItem = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const currentUrl = useRef(window.location.href);
+
   const openModal = () => {
     setIsOpen(true);
+    const newUrl = currentUrl.current + `posts/${product?.node?.slug}`;
+    window.history.replaceState(null, "", newUrl);
+
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
+  const closeModal = () => {
+    setIsOpen(!isOpen);
+
+    const cleanUrl = currentUrl.current;
+    window.history.replaceState(null, "", cleanUrl);
+
+    document.body.style.overflow = "unset";
   };
 
   return (
@@ -27,8 +44,7 @@ const ProductItem = (props) => {
         <ProductModal
           postId={product?.node?.id}
           slug={product?.node?.slug}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
+          onCloseModal={closeModal}
         />
       )}
       <div className="product__zone" onClick={openModal}>

@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 
 // styles
 import "../styles/hunt/_filtermodal.scss";
-
-// Modal
 import {
   Modal,
   ModalContent,

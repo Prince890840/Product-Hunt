@@ -1,10 +1,18 @@
 import React from "react";
 import "../styles/hunt/_paginationbuttons.scss";
+import { useParams } from "react-router-dom";
 
 const PaginationButtons = () => {
+  const { date, month, year } = useParams();
+  const fullMonthName = new Date(2023, month - 1).toLocaleString("en-US", {
+    month: "long",
+  });
+  const formattedDate = `${month === undefined ? "" : fullMonthName} ${
+    date === undefined ? "" : date
+  } ${month && date ? "," : ""} ${year}`;
   return (
     <div className="header-section">
-      <h2>Posts for April 23, 2023 | Product Hunt</h2>
+      <h2>Posts for {formattedDate} | Product Hunt</h2>
       <div className="pagination-buttons">
         <button className="button">←</button>
         <button className="button button-spacing">Daily</button>

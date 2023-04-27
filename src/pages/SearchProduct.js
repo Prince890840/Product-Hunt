@@ -3,9 +3,6 @@ import React, { Fragment } from "react";
 // styles
 import "../styles/hunt/_searchbox.scss";
 
-// components
-import Products from "./Products";
-
 const SearchProduct = () => {
   return (
     <Fragment>
@@ -65,7 +62,6 @@ const SearchProduct = () => {
           </div>
         </div>
       </div>
-      <Products />
     </Fragment>
   );
 };

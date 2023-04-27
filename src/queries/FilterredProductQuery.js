@@ -1,16 +1,20 @@
 import { gql } from "@apollo/client";
 
 export const GET_FILTERED_PRODUCTS = gql`
-  query FilteredPosts(
-    $first: Int
+  query Posts(
     $postedBefore: DateTime
     $postedAfter: DateTime
     $after: String
+    $before: String
+    $order: PostsOrder
+    $first: Int
   ) {
     posts(
       postedBefore: $postedBefore
       postedAfter: $postedAfter
       after: $after
+      before: $before
+      order: $order
     ) {
       totalCount
       edges {
@@ -19,6 +23,7 @@ export const GET_FILTERED_PRODUCTS = gql`
           id
           name
           website
+          slug
           commentsCount
           tagline
           votesCount
@@ -31,9 +36,14 @@ export const GET_FILTERED_PRODUCTS = gql`
           }
         }
       }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
     }
   }
-
   fragment TopicFragment on TopicConnection {
     edges {
       cursor

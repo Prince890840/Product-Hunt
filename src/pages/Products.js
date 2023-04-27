@@ -11,25 +11,26 @@ import { useQuery } from "@apollo/client";
 
 // query
 import { GET_POSTS } from "../queries/FetchProducts";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [allPosts, setAllPosts] = useState([]);
 
   const [filteredProduct, setFilteredProduct] = useState(null);
 
+  const navigate = useNavigate();
+
   const { loading, fetchMore } = useQuery(GET_POSTS, {
-    variables: filteredProduct
-      ? { first: 2, order: filteredProduct }
-      : {
-          first: 2,
-        },
+    variables: { first: 2, order: filteredProduct },
     onCompleted: (data) => {
       if (!allPosts.length) {
         const { edges } = data?.posts;
         setAllPosts(edges);
+      } else {
+        setAllPosts(data?.posts?.edges);
       }
     },
-    fetchPolicy: "cache-first",
+    fetchPolicy: "cache-and-network",
   });
 
   const intersectionObserverRef = useRef();
@@ -73,7 +74,13 @@ const Products = () => {
   }, [loading, fetchMore, allPosts, filteredProduct]);
 
   const getFilteredProducts = (event) => {
-    setFilteredProduct(event.target.value);
+    if (event.target.value === "NEWEST") {
+      navigate(`${event.target.value.toLowerCase()}`);
+      setFilteredProduct(event.target.value);
+    } else {
+      navigate("/");
+      setFilteredProduct(null);
+    }
   };
 
   return (
@@ -87,8 +94,8 @@ const Products = () => {
           </select>
         </form>
       </div>
-      {allPosts.map((product, index) => (
-        <ProductItem key={index} product={product} />
+      {allPosts.map((product) => (
+        <ProductItem key={product?.node?.id} product={product} />
       ))}
       <div ref={intersectionObserverRef}>Loading more posts...</div>
     </Fragment>

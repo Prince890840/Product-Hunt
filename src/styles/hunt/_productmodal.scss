@@ -3,15 +3,29 @@ $background-color_1: rgba(0, 0, 0, 0.5);
 $background-color_2: #fff;
 $background-color_3: transparent;
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 16px;
+.overlaw {
+  position: fixed;
+  inset: 0;
+  overflow: auto;
+  z-index: 999;
+}
+
+.outer-close-btn {
+  background-color: $background-color_2;
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  border-radius: 50%;
+  z-index: 999;
+  max-width: 40px;
+  max-height: 38px;
+  text-align: center;
+  padding: 10px 14px 10px 14px;
   cursor: pointer;
-  border: none;
-  background-color: $background-color_3;
-  outline: none;
+}
+
+.outer-close-btn svg:hover {
+  fill: #FF6154;
 }
 
 .modal__main_content {
@@ -101,7 +115,7 @@ $background-color_3: #ddd;
 $background-color_4: #3e8e41;
 
 .dropbtn {
-  border: 1px solid #feb6b0;
+  border: 1px solid #d9e1ec;
   background: #fff;
   color: #21293c;
   padding: 18px 14px;
