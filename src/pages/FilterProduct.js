@@ -1,4 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+
+// react-router-dom
+import { useLocation } from "react-router-dom";
 
 // styles
 import "../styles/hunt/_filterproduct.scss";
@@ -6,17 +9,13 @@ import "../styles/hunt/_filterproduct.scss";
 // components
 import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
 import PaginationButtons from "./PaginationButtons";
+import ProductModal from "./ProductModal";
 
 // apollo-client
 import { useQuery } from "@apollo/client";
 
 // query
 import { GET_FILTERED_PRODUCTS } from "../queries/FilterredProductQuery";
-
-// react-router-dom
-import { useLocation } from "react-router-dom";
-import ProductModal from "./ProductModal";
-import { useCallback } from "react";
 
 const FilterProduct = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -25,7 +24,6 @@ const FilterProduct = () => {
   const pathname = location.pathname;
   const parts = pathname.split("/");
   const [postObj, setPostObj] = useState({});
-  const [paginationDetails, setPageInfo] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = (product) => {
@@ -46,8 +44,10 @@ const FilterProduct = () => {
 
   const getUpdatedDate = useCallback(() => {
     let formatedDate, postedBefore, postedAfter;
+
     switch (parts.length) {
       case 5:
+        // Situation 1: Yesterday's launches
         formatedDate = parts.slice(2, 5).join("/");
 
         const date = new Date(formatedDate + " UTC");
@@ -61,46 +61,42 @@ const FilterProduct = () => {
         afterDate.toISOString();
 
         postedAfter = afterDate.toISOString();
-
         break;
       case 4:
+        // Situation 1: Last month's launches
         formatedDate = parts.slice(2, 4).join("/");
         postedBefore = null;
 
-        const monthFilter = new Date(formatedDate + "UTC");
+        const monthFilter = new Date(formatedDate + " UTC");
+        monthFilter.setUTCMonth(monthFilter.getUTCMonth() + 1);
         monthFilter.setDate(1);
         monthFilter.setUTCHours(0, 0, 0, 0);
 
-        postedAfter = monthFilter.toISOString();
+        postedBefore = monthFilter.toISOString();
+        postedAfter = new Date(formatedDate + " UTC").toISOString();
         break;
       default:
+        // Situation 2: This year's launches
         formatedDate = parts.slice(2, 3).join("/");
         postedBefore = null;
-
-        const yearFilter = new Date(formatedDate + "UTC");
-        yearFilter.setDate(1);
-        yearFilter.setUTCHours(0, 0, 0, 0);
-
-        postedAfter = yearFilter.toISOString();
+        postedAfter = new Date(formatedDate + " UTC").toISOString();
         break;
     }
 
     return { postedBefore, postedAfter };
-  },[parts]);
+  }, [parts]);
 
   const { loading, fetchMore } = useQuery(GET_FILTERED_PRODUCTS, {
     variables: {
       postedBefore: getUpdatedDate().postedBefore,
       postedAfter: getUpdatedDate().postedAfter,
-      after: null,
       first: 2,
     },
     onCompleted: (data) => {
       if (!allPosts.length) {
-        const { edges, totalCount, pageInfo } = data?.posts;
+        const { edges, totalCount } = data?.posts;
         setAllPosts(edges);
         setTotalCounts(totalCount);
-        setPageInfo(pageInfo);
       }
     },
     fetchPolicy: "cache-and-network",
@@ -127,10 +123,9 @@ const FilterProduct = () => {
                 postedAfter: getUpdatedDate().postedAfter,
               },
             });
-            const { edges, totalCount, pageInfo } = data?.posts;
+            const { edges, totalCount } = data?.posts;
             setAllPosts((prevPosts) => [...prevPosts, ...edges]);
             setTotalCounts(totalCount);
-            setPageInfo(pageInfo);
           } else {
             return;
           }
