@@ -1,5 +1,9 @@
 import React from "react";
-import "../styles/hunt/_paginationbuttons.scss";
+
+// styles
+import "../../styles/hunt/_paginationbuttons.scss";
+
+// react-router-dom
 import { useParams } from "react-router-dom";
 
 const PaginationButtons = () => {

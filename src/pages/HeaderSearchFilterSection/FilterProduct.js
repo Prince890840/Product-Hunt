@@ -4,18 +4,18 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
 // styles
-import "../styles/hunt/_filterproduct.scss";
+import "../../styles/hunt/_filterproduct.scss";
 
 // components
-import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
+import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 import PaginationButtons from "./PaginationButtons";
-import ProductModal from "./ProductModal";
+import ProductModal from "../HeroSectionProduct/ProductModal";
 
 // apollo-client
 import { useQuery } from "@apollo/client";
 
 // query
-import { GET_FILTERED_PRODUCTS } from "../queries/FilterredProductQuery";
+import { GET_FILTERED_PRODUCTS } from "../../queries/FilterredProductQuery";
 
 const FilterProduct = () => {
   const [allPosts, setAllPosts] = useState([]);

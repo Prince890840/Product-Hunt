@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 
 // styles
-import "../styles/hunt/_productitem.scss";
+import "../../styles/hunt/_productitem.scss";
 
 // components
-import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
+import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 import ProductModal from "./ProductModal";
 
 // prop-types

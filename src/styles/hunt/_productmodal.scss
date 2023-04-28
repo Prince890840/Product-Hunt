@@ -148,7 +148,7 @@ $background-color_4: #3e8e41;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  a {
+  /* a {
     color: $color_2;
     padding: 12px 16px;
     text-decoration: none;
@@ -156,7 +156,7 @@ $background-color_4: #3e8e41;
     &:hover {
       background-color: $background-color_3;
     }
-  }
+  } */
 }
 
 .slick-prev:before,

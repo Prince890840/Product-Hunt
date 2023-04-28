@@ -1,16 +1,16 @@
 import React, { Fragment } from "react";
 
 //  styles
-import "../styles/hunt/_trendingtopics.scss";
+import "../../styles/hunt/_trendingtopics.scss";
 
 // components
-import ProductSectionLayout from "./ProductSectionLayout";
+import ProductSectionLayout from "../ProductSection/ProductSectionLayout";
 
 // apollo/client
 import { useQuery } from "@apollo/client";
 
 // query
-import { FETCH_TOP_TOPICS } from "../queries/FetchTopics";
+import { FETCH_TOP_TOPICS } from "../../queries/FetchTopics";
 
 const TrendingTopics = () => {
   const { loading, data } = useQuery(FETCH_TOP_TOPICS);
@@ -61,7 +61,12 @@ const TrendingTopics = () => {
             ))}
         </div>
       </div>
+
+      {/* ***************************** Product Section Layout ******************************** */}
+
       <ProductSectionLayout />
+
+      {/* ************************************************************************************* */}
     </Fragment>
   );
 };

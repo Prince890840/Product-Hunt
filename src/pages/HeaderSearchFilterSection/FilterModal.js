@@ -2,12 +2,12 @@ import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 // styles
-import "../styles/hunt/_filtermodal.scss";
+import "../../styles/hunt/_filtermodal.scss";
 import {
   Modal,
   ModalContent,
   ModalShadow,
-} from "../components/Modal/FilterModalStyle";
+} from "../../components/Modal/FilterModalStyle";
 
 // react-router-dom
 import { useNavigate } from "react-router-dom";
@@ -19,10 +19,10 @@ import PropTypes from "prop-types";
 import { useQuery } from "@apollo/client";
 
 // query
-import { SEARCH_PRODUCT } from "../queries/SearchProduct";
+import { SEARCH_PRODUCT } from "../../queries/SearchProduct";
 
 // component
-import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
+import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 import LoadingBar from "react-top-loading-bar";
 
 const FilterModal = (props) => {

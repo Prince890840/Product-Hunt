@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 
 // components
-import SearchProduct from "./SearchProduct";
-import Products from "./Products";
+import SearchProduct from "../MainSearchSection/SearchProduct";
+import Products from "../HeroSectionProduct/Products";
 
 const LeftSidebar = () => {
   return (

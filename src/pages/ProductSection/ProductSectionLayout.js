@@ -1,7 +1,7 @@
 import React from "react";
 
 // styles
-import "../styles/hunt/_product.scss";
+import "../../styles/hunt/_product.scss";
 
 // components
 import RightSidebar from "./RightSidebar";

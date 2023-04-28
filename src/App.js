@@ -2,12 +2,23 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // pages
-import RootLayout from "./pages/RootLayout";
-import TrendingTopics from "./pages/TrendingTopics";
-import ProductSectionLayout from "./pages/ProductSectionLayout";
-import ErrorController from "./pages/ErrorController";
-import FilterProduct from "./pages/FilterProduct";
-import Products from "./pages/Products";
+import RootLayout from "./pages/RootLayout/RootLayout";
+
+import TrendingTopics from "./pages/TrendingTopics/TrendingTopics";
+
+import ProductSectionLayout from "./pages/ProductSection/ProductSectionLayout";
+
+import ErrorController from "./pages/ErrorHandler/ErrorController";
+
+import Products from "./pages/HeroSectionProduct/Products";
+
+import FilterProduct from "./pages/HeaderSearchFilterSection/FilterProduct";
+
+import Collection from "./pages/Community/Collections/Collection";
+
+import CollectionItem from "./pages/Community/Collections/CollectionItem";
+
+import Profile from "./pages/UserProfile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +51,18 @@ const router = createBrowserRouter([
       {
         path: "/time-travel/:year",
         element: <FilterProduct />,
+      },
+      {
+        path: "/collections",
+        element: <Collection />,
+      },
+      {
+        path: "/collections/:collectionId",
+        element: <CollectionItem />,
+      },
+      {
+        path: "/user",
+        element: <Profile />,
       },
     ],
   },

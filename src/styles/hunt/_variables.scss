@@ -47,3 +47,10 @@ $background-color_1: #e7ffff;
     }
   }
 }
+
+@mixin flex($flex, $JustifyContent, $alignItems) {
+  display: $flex;
+  justify-content: $JustifyContent;
+  align-items: $alignItems;
+  flex-wrap: wrap;
+}

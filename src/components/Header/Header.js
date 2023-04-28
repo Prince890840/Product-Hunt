@@ -6,19 +6,32 @@ import "./_header.scss";
 import { Link } from "react-router-dom";
 
 // components
-import FilterModal from "../../pages/FilterModal";
+import FilterModal from "../../pages/HeaderSearchFilterSection/FilterModal";
 
 // react-top-loading-bar
 import LoadingBar from "react-top-loading-bar";
+import { useQuery } from "@apollo/client";
+import { USER_PROFILE } from "../../queries/user";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({});
 
   const ref = useRef(null);
 
   const openModal = () => {
     setIsOpen(true);
   };
+
+  const { loading } = useQuery(USER_PROFILE, {
+    variables: {
+      first: 2,
+    },
+    onCompleted: (data) => {
+      setUser(data);
+    },
+    fetchPolicy: "cache-and-network",
+  });
 
   return (
     <>
@@ -70,9 +83,23 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="item">
-                  <Link className="nav__link" to="/">
-                    Community
-                  </Link>
+                  <div className="dropdown">
+                    <button className="header-dropdown">Community</button>
+                    <div className="dropdown-content">
+                      <Link to="/collections">
+                        <div className="inner-menu">
+                          <img
+                            src="https://ph-static.imgix.net/nav-collections.png?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=max&dpr=1"
+                            alt="collection"
+                          />
+                          <div className="content-section">
+                            <h3>Collection</h3>
+                            <p>Products curated by community</p>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
                 </li>
                 <li className="item">
                   <Link className="nav__link" to="/">
@@ -116,7 +143,7 @@ const Header = () => {
               <li className="profile__item">
                 <img
                   className="user__profile"
-                  src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"
+                  src={user?.viewer?.user?.profileImage}
                   alt="profile"
                   height={40}
                   width={40}

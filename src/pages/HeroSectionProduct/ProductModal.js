@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // styles
-import "../styles/hunt/_productmodal.scss";
+import "../../styles/hunt/_productmodal.scss";
 import {
   Modal,
   ModalContent,
   ModalShadow,
-} from "../components/Modal/ModalStyle";
+} from "../../components/Modal/ModalStyle";
 
 // component
-import ProductThumbnail from "../components/ProductThumbnail/ProductThumbnail";
+import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 import styled from "styled-components";
 
 // slider
@@ -20,7 +20,9 @@ import "slick-carousel/slick/slick-theme.css";
 
 // prop-types
 import PropTypes from "prop-types";
-import { GET_SINGLE_POST } from "../queries/FetchSingleProduct";
+
+// query and apollo-client
+import { GET_SINGLE_POST } from "../../queries/FetchSingleProduct";
 import { useQuery } from "@apollo/client";
 
 const Comment = styled.div`

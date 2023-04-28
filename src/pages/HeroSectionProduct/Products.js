@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 
 // styles
-import "../styles/hunt/_singleproduct.scss";
+import "../../styles/hunt/_singleproduct.scss";
 
 // components
 import ProductItem from "./ProductItem";
@@ -10,7 +10,7 @@ import ProductItem from "./ProductItem";
 import { useQuery } from "@apollo/client";
 
 // query
-import { GET_POSTS } from "../queries/FetchProducts";
+import { GET_POSTS } from "../../queries/FetchProducts";
 import { useNavigate } from "react-router-dom";
 
 const Products = () => {
