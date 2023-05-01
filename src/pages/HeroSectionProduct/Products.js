@@ -90,7 +90,7 @@ const Products = () => {
   return (
     <Fragment>
       <div className="header__section">
-        <h1>Your next favorite thing 👇</h1>
+        <h1>Is the next 🦄 here?</h1>
         <form>
           <select name="order" id="order" onChange={getFilteredProducts}>
             <option value="FEATURED_AT">Featured</option>

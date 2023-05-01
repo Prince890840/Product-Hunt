@@ -14,38 +14,32 @@ $font-family_1: $font-family-light;
   }
   .collection-heading {
     margin-top: 32px;
-    font-size: 32px;
-    line-height: 40px;
+    @include font(32px, 40px);
   }
   .collection-description {
     margin-top: 16px;
     color: $color_1;
-    font-size: 14px;
-    line-height: 24px;
+    @include font(14px, 24px);
     font-weight: 400;
   }
 }
 
 .collection-post-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
+  @include flex(flex, flex-start, center);
   margin-top: 64px;
+
   .post-item-content {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    @include flex(flex, center, flex-start);
     flex-direction: column;
     margin-right: 64px;
     max-width: 560px;
+    
     .learn-more-btn {
       margin-top: 16px;
       border: 1px solid #d9e1ec;
       background: #fff;
       color: $color_1;
-      font-size: 14px;
-      line-height: 24px;
+      @include font(14px, 24px);
       font-weight: 600;
       padding: 8px 16px;
       appearance: none;

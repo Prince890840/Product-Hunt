@@ -1,7 +1,10 @@
-$font-family_1: sans-serif;
-$background-color_1: rgba(0, 0, 0, 0.5);
-$background-color_2: #fff;
-$background-color_3: transparent;
+@import "./variables";
+
+$color_2: black;
+$background-color_1: #04aa6d;
+$background-color_2: #f1f1f1;
+$background-color_3: #ddd;
+$background-color_4: #3e8e41;
 
 .overlaw {
   position: fixed;
@@ -11,7 +14,7 @@ $background-color_3: transparent;
 }
 
 .outer-close-btn {
-  background-color: $background-color_2;
+  background-color: #fff;
   position: fixed;
   top: 2rem;
   left: 2rem;
@@ -25,7 +28,7 @@ $background-color_3: transparent;
 }
 
 .outer-close-btn svg:hover {
-  fill: #FF6154;
+  fill: #ff6154;
 }
 
 .modal__main_content {
@@ -52,67 +55,53 @@ $background-color_3: transparent;
 .product-semi-content {
   display: flex;
   flex-wrap: wrap;
-}
-
-.product-semi-content .product__details {
-  max-width: 460px;
-}
-
-.product-semi-content .product__details h1 {
-  font-size: 24px;
-  line-height: 32px;
-  color: #21293c;
-  margin-top: 12px;
-  text-align: start;
-}
-
-.product-semi-content .product__details p {
-  margin-top: 8px;
-  font-size: 24px;
-  line-height: 32px;
-  color: #4b587c;
-  text-align: start;
+  .product__details {
+    max-width: 460px;
+    h1 {
+      @include font(24px, 32px);
+      color: #21293c;
+      margin-top: 12px;
+      text-align: start;
+    }
+    p {
+      margin-top: 8px;
+      @include font(24px, 32px);
+      color: #4b587c;
+      text-align: start;
+    }
+  }
+  .product__visit {
+    select {
+      padding: 8px 16px;
+      @include font(14px, 24px);
+      color: #21293c;
+    }
+    .btn {
+      background: linear-gradient(227deg, #ff4582, #ff6154);
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      color: $background-color_2;
+      text-align: center;
+      padding: 20px;
+      text-transform: uppercase;
+      border: none;
+      margin-left: 12px;
+      max-height: 64px;
+      min-width: 224px;
+    }
+  }
 }
 
 .product__visit {
   margin-left: 24px;
 }
 
-.product-semi-content .product__visit select {
-  padding: 8px 16px;
-  font-size: 14px;
-  line-height: 24px;
-  color: #21293c;
-}
-
-.product-semi-content .product__visit .btn {
-  background: linear-gradient(227deg, #ff4582, #ff6154);
-  transition: all 0.3s ease;
-  border-radius: 4px;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  text-transform: uppercase;
-  border: none;
-  margin-left: 12px;
-  max-height: 64px;
-  min-width: 224px;
-}
-
 .product-last-section p {
   text-align: start;
   margin-top: 12px;
   color: #21293c;
-  font-size: 16px;
-  line-height: 24px;
+  @include font(16px, 24px);
 }
-
-$color_1: white;
-$color_2: black;
-$background-color_1: #04aa6d;
-$background-color_2: #f1f1f1;
-$background-color_3: #ddd;
-$background-color_4: #3e8e41;
 
 .dropbtn {
   border: 1px solid #d9e1ec;

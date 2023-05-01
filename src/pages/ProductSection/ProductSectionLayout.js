@@ -15,7 +15,7 @@ const ProductSectionLayout = () => {
           <LeftSidebar />
         </div>
         <div className="right_section">
-          <RightSidebar />
+          {/* <RightSidebar /> */}
         </div>
       </div>
     </>

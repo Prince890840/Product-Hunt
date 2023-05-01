@@ -1,4 +1,4 @@
-@import "../../styles/hunt/variables.scss";
+@import "../../styles/hunt/variables";
 
 .nav__container {
   padding: 20px 32px;
@@ -13,10 +13,7 @@ a {
 }
 
 nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(flex, space-between, center);
   box-shadow: 0 0 1px 1px rgba(33, 41, 63, 0.1);
   top: 0;
   position: sticky;
@@ -36,8 +33,7 @@ nav {
     $color_1: #838d99;
 
     .search__box {
-      font-size: 14px;
-      line-height: normal;
+      @include font(14px, normal);
       background: #ffffff;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
       background-repeat: no-repeat;
@@ -62,15 +58,11 @@ nav {
   }
   .navigation__menu {
     ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+      @include flex(flex, space-between, center);
     }
 
     .nav__link {
-      font-size: 16px;
-      line-height: 24px;
+      @include font(16px, 24px);
       color: $nav-item;
     }
 
@@ -83,10 +75,7 @@ nav {
 
   .profile__section {
     ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+      @include flex(flex, space-between, center);
     }
 
     .profile__item {
@@ -95,8 +84,7 @@ nav {
 
     .profile__item .lunch__product {
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+      @include font(16px, 24px);
       font-family: $font-family-regular;
       cursor: pointer;
       background: linear-gradient(227deg, #ff4582, #e12e0d);
@@ -126,8 +114,7 @@ nav {
   background: #fff;
   font-family: $font-family-regular;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  @include font(16px, 24px);
   color: $nav-item;
   outline: none;
   transition: all 0.3s ease;
@@ -135,9 +122,7 @@ nav {
 }
 
 .inner-menu {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  @include flex(flex, flex-start, center);
   padding: 10px;
   min-width: 330px;
   gap: 5px;
@@ -147,11 +132,11 @@ nav {
 }
 
 .inner-menu h3 {
-  font-size: 16px;
+  @include font(16px, normal);
   color: $nav-item;
 }
 
 .inner-menu p {
-  font-size: 12px;
+  @include font(12px, normal);
   color: $nav-item;
 }

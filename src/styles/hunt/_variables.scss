@@ -54,3 +54,8 @@ $background-color_1: #e7ffff;
   align-items: $alignItems;
   flex-wrap: wrap;
 }
+
+@mixin font($size, $height) {
+  font-size: $size;
+  line-height: $height;
+}

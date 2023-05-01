@@ -1,37 +1,41 @@
 @import "./variables";
 
+$color_1: #4b587c;
+$font-family_1: $font-family-light;
+$color_2: #4b587c;
+$color_3: #005ef6;
+$background-color_1: #fff;
+$background-color_2: #feede6;
+
 .collection-header-section {
   max-width: 800px;
-}
-
-.collection-header-section .path-section p {
-  font-size: 12px;
-  line-height: 20px;
-  color: #4b587c;
-  margin: 28px 0 20px 0;
-}
-
-.collection-header-section .collection-content h1 {
-  font-size: 24px;
-  line-height: 32px;
-  margin-top: 8px;
-}
-
-.collection-header-section .collection-content p {
-  font-size: 24px;
-  line-height: 32px;
-  margin-top: 8px;
-  color: #4b587c;
-  font-family: $font-family-light;
-  padding: 0 0 48px 0;
+  .path-section {
+    p {
+      @include font(12px, 20px);
+      color: #4b587c;
+      margin: 28px 0 20px 0;
+    }
+  }
+  .collection-content {
+    h1 {
+      @include font(24px, 32px);
+      margin-top: 8px;
+    }
+    p {
+      @include font(24px, 32px);
+      margin-top: 8px;
+      color: $color_1;
+      font-family: $font-family_1;
+      padding: 0 0 48px 0;
+    }
+  }
 }
 
 .search__collections__section {
   color: #838d99;
 
   .collection__box {
-    font-size: 14px;
-    line-height: normal;
+    @include font(14px, normal);
     background: #ffffff;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
     background-repeat: no-repeat;
@@ -55,91 +59,81 @@
 .collection-main-section {
   margin-top: 40px;
   box-sizing: border-box;
-}
 
-.collection-main-section .collection-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px 24px;
-  padding-bottom: 20px;
-  width: 100%;
-}
+  .collection-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px 24px;
+    padding-bottom: 20px;
+    width: 100%;
 
-.collection-main-section .collection-cards .card {
-  max-width: 390px;
-  min-height: 482px;
-  border: 1px solid #d9e1ec;
-  border-radius: 4px;
-  background-color: #fff;
-  background-image: linear-gradient(12deg, #fff 50%, hsla(0, 0%, 100%, 0));
-  -webkit-transition: background-color 0.3s ease-in;
-  animation: styles_fadeIn__RBdJG 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in;
-  padding: 32px;
-}
+    .card {
+      max-width: 390px;
+      min-height: 482px;
+      border: 1px solid #d9e1ec;
+      border-radius: 4px;
+      background-color: $background-color_1;
+      background-image: linear-gradient(12deg, #fff 50%, hsla(0, 0%, 100%, 0));
+      -webkit-transition: background-color 0.3s ease-in;
+      animation: styles_fadeIn__RBdJG 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in;
+      padding: 32px;
 
-.collection-main-section .collection-cards .card:hover {
-  cursor: pointer;
-  border-radius: 4px px;
-  background-color: #feede6;
-}
+      &:hover {
+        cursor: pointer;
+        border-radius: 4px px;
+        background-color: $background-color_2;
+      }
 
-.collection-main-section .collection-cards .card h2 {
-  margin: 0 0 8px 0;
-  color: #21293c;
-  font-size: 24px;
-  line-height: 32px;
-}
+      h2 {
+        margin: 0 0 8px 0;
+        color: #21293c;
+      }
 
-.collection-main-section .collection-cards .card .paragraph {
-  font-size: 12px;
-  line-height: 20px;
-  margin: 0 0 8px 0;
-  color: #4b587c;
-}
+      .paragraph {
+        @include font(12px, 20px);
+        margin: 0 0 8px 0;
+        color: $color_2;
+      }
 
-.collection-main-section .collection-cards .card .description {
-  margin: 0 0 24px 0;
-}
+      .description {
+        margin: 0 0 24px 0;
+      }
 
-.collection-main-section .collection-cards .card ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
+      ul {
+        @include flex(flex, center, flex-start);
+        flex-direction: column;
+      }
 
-.collection-main-section .collection-cards .card li {
-  display: flex;
-  margin: 0 0 20px 0;
-  min-width: 100%;
-}
+      li {
+        display: flex;
+        margin: 0 0 20px 0;
+        min-width: 100%;
+      }
 
-.collection-main-section
-  .collection-cards
-  .card
-  .collection-item
-  .collection-name {
-  margin-left: 8px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  line-height: 24px;
+      .collection-item {
+        .collection-name {
+          margin-left: 8px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          @include font(14px, 24px);
+        }
+      }
+    }
+  }
 }
 
 .total-collections-item {
-  color: #005ef6;
+  color: $color_3;
 }
 
 .collection__image {
   max-height: 36px;
   max-width: 36px;
-}
-
-.collection__image img {
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
 }

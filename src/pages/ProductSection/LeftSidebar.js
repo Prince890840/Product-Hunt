@@ -7,7 +7,7 @@ import Products from "../HeroSectionProduct/Products";
 const LeftSidebar = () => {
   return (
     <Fragment>
-      <SearchProduct />
+      {/* <SearchProduct /> */}
       <Products />
     </Fragment>
   );
