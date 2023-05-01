@@ -63,7 +63,7 @@ const FilterProduct = () => {
         postedAfter = afterDate.toISOString();
         break;
       case 4:
-        // Situation 1: Last month's launches
+        // Situation 2: Last month's launches
         formatedDate = parts.slice(2, 4).join("/");
         postedBefore = null;
 
@@ -76,9 +76,14 @@ const FilterProduct = () => {
         postedAfter = new Date(formatedDate + " UTC").toISOString();
         break;
       default:
-        // Situation 2: This year's launches
+        // Situation 3: This year's launches
         formatedDate = parts.slice(2, 3).join("/");
-        postedBefore = null;
+
+        const now = new Date();
+        const currentDate = new Date(now);
+        currentDate.setUTCHours(0, 0, 0, 0);
+        postedBefore = currentDate.toISOString();
+
         postedAfter = new Date(formatedDate + " UTC").toISOString();
         break;
     }
@@ -93,9 +98,12 @@ const FilterProduct = () => {
       first: 2,
     },
     onCompleted: (data) => {
+      const { edges, totalCount } = data?.posts;
       if (!allPosts.length) {
-        const { edges, totalCount } = data?.posts;
         setAllPosts(edges);
+        setTotalCounts(totalCount);
+      } else {
+        setAllPosts(data?.posts?.edges);
         setTotalCounts(totalCount);
       }
     },

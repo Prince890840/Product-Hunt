@@ -20,11 +20,19 @@ const Products = () => {
 
   const navigate = useNavigate();
 
+  const getUpdatedDate = () => {
+    const now = new Date();
+    const date = new Date(now);
+    date.setUTCHours(0, 0, 0, 0);
+    return date.toISOString();
+  };
+
   const { loading, fetchMore } = useQuery(GET_POSTS, {
     variables: filteredProduct
       ? { first: 2, order: filteredProduct }
       : {
           first: 2,
+          postedBefore: getUpdatedDate(),
         },
     onCompleted: (data) => {
       if (!allPosts.length) {
@@ -52,10 +60,16 @@ const Products = () => {
           if (allPosts.length > 0) {
             const lastPost = allPosts[allPosts?.length - 1];
             const { data } = await fetchMore({
-              variables: {
-                after: lastPost?.cursor,
-                order: filteredProduct,
-              },
+              variables: filteredProduct
+                ? {
+                    after: lastPost?.cursor,
+                    order: filteredProduct,
+                    postedBefore: getUpdatedDate(),
+                  }
+                : {
+                    after: lastPost?.cursor,
+                    postedBefore: getUpdatedDate(),
+                  },
             });
             const { edges } = data?.posts;
             setAllPosts((prevPosts) => [...prevPosts, ...edges]);
@@ -87,6 +101,21 @@ const Products = () => {
     }
   };
 
+  const groupedData = allPosts.reduce((acc, item) => {
+    const date = new Date(item.node.createdAt);
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+    });
+    if (!acc[formattedDate]) {
+      acc[formattedDate] = [];
+    }
+    acc[formattedDate].push(item);
+    return acc;
+  }, {});
+
+  console.log(groupedData);
+
   return (
     <Fragment>
       <div className="header__section">
@@ -98,8 +127,8 @@ const Products = () => {
           </select>
         </form>
       </div>
-      {allPosts.map((product) => (
-        <ProductItem key={product?.node?.id} product={product} />
+      {allPosts.map((product, index) => (
+        <ProductItem key={index} product={product} />
       ))}
       <div ref={intersectionObserverRef}>Loading more posts...</div>
     </Fragment>
