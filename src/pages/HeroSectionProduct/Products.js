@@ -101,21 +101,6 @@ const Products = () => {
     }
   };
 
-  const groupedData = allPosts.reduce((acc, item) => {
-    const date = new Date(item.node.createdAt);
-    const formattedDate = date.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-    });
-    if (!acc[formattedDate]) {
-      acc[formattedDate] = [];
-    }
-    acc[formattedDate].push(item);
-    return acc;
-  }, {});
-
-  console.log(groupedData);
-
   return (
     <Fragment>
       <div className="header__section">
