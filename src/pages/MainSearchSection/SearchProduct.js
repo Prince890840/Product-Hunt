@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 // styles
-import "../../styles/hunt/_searchbox.scss";
+import "../../styles/pages/_searchbox.scss";
 
 const SearchProduct = () => {
   return (

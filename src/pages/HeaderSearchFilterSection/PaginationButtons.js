@@ -1,7 +1,7 @@
 import React from "react";
 
 // styles
-import "../../styles/hunt/_paginationbuttons.scss";
+import "../../styles/components/_paginationbuttons.scss";
 
 // react-router-dom
 import { useParams } from "react-router-dom";

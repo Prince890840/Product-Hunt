@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
 // styles
-import "../../styles/hunt/_filterproduct.scss";
+import "../../styles/pages/_filterproduct.scss";
 
 // components
 import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";

@@ -1,4 +1,25 @@
-@import "./fonts.scss";
+@import "./fonts";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  font-family: $font-family-regular;
+  height: 100%;
+  background: #fff;
+}
+
+.wrapper {
+  max-width: 1216px;
+  margin: 0 auto;
+}
 
 $spacing-sm: 8px;
 $spacing-md: 16px;

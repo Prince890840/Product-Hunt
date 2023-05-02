@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // styles
-import "../../styles/hunt/_productmodal.scss";
+import "../../styles/components/_productmodal.scss";
 import {
   Modal,
   ModalContent,

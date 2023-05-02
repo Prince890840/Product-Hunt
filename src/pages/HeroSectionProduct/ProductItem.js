@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 
 // styles
-import "../../styles/hunt/_productitem.scss";
+import "../../styles/pages/_productitem.scss";
 
 // components
 import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";

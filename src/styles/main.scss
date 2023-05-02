@@ -1,28 +1,20 @@
-@import "./hunt/variables.scss";
+@import "./abstracts/variables";
+@import "./abstracts/fonts";
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
+@import "./components/filtermodal";
+@import "./components/paginationbuttons";
+@import "./components/productmodal";
 
-body {
-  width: 100%;
-  font-family: $font-family-regular;
-  height: 100%;
-  background: #fff;
-}
+@import "./layouts/header";
+@import "./layouts/rootlayout";
 
-.wrapper {
-  max-width: 1216px;
-  margin: 0 auto;
-}
-
-@import "./hunt//trendingtopics";
-@import "./hunt/product";
-@import "./hunt/collection";
-@import "./hunt/singleproduct";
-@import "./hunt/singlecollection";
+@import "./pages/collection";
+@import "./pages/errorcontroller";
+@import "./pages/filterproduct";
+@import "./pages/productitem";
+@import "./pages/rightsidebar";
+@import "./pages/searchbox";
+@import "./pages/singlecollection";
+@import "./pages/singleproduct";
+@import "./pages/trendingtopics";
+@import "./pages/userprofile";

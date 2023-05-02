@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 // style
-import "../../styles/hunt/_errorcontroller.scss";
+import "../../styles/pages/_errorcontroller.scss";
 
 const ErrorController = () => {
   return (

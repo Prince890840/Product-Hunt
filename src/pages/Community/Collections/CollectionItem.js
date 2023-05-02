@@ -1,7 +1,7 @@
 import React from "react";
 
 // styles
-import "../../../styles/hunt/_singlecollection.scss";
+import "../../../styles/pages/_singlecollection.scss";
 
 const CollectionItem = () => {
   return (

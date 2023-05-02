@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 //  styles
-import "../../styles/hunt/_trendingtopics.scss";
+import "../../styles/pages/_trendingtopics.scss";
 
 // components
 import ProductSectionLayout from "../ProductSection/ProductSectionLayout";

@@ -1,35 +1,5 @@
-@font-face {
-  font-family: "Blinker-Black";
-  src: url(../../assets/font/Blinker-Black.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Blinker-Bold";
-  src: url(../../assets/font/Blinker-Bold.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Blinker-ExtraBold";
-  src: url(../../assets/font/Blinker-ExtraBold.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Blinker-ExtraLight";
-  src: url(../../assets/font/Blinker-ExtraLight.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Blinker-Light";
-  src: url(../../assets/font/Blinker-Light.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Blinker-Regular";
-  src: url(../../assets/font/Blinker-Regular.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Blinker-SemiBold";
-  src: url(../../assets/font/Blinker-SemiBold.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Blinker-Thin";
-  src: url(../../assets/font/Blinker-Thin.ttf) format("truetype");
-}
+@import "../abstracts/variables";
+
 .review__section {
   display: flex;
   flex-direction: column;
@@ -57,11 +27,11 @@
   font-size: 14px;
   line-height: 24px;
   color: #21293c;
-  font-family: "Blinker-Regular";
+  font-family: $font-family-regular;
 }
 
 .review__section .review__content p {
-  font-family: "Blinker-Light";
+  font-family: $font-family-light;
   font-size: 12px;
   line-height: 20px;
   color: #4b587c;
@@ -101,4 +71,4 @@
   line-height: 20px;
   word-spacing: 0;
   color: #4b587c;
-}/*# sourceMappingURL=rightsidebar.css.map */
+}

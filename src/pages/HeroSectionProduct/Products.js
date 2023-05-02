@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 
 // styles
-import "../../styles/hunt/_singleproduct.scss";
+import "../../styles/pages/_singleproduct.scss";
 
 // components
 import ProductItem from "./ProductItem";

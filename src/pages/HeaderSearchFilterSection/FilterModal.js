@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 // styles
-import "../../styles/hunt/_filtermodal.scss";
+import "../../styles/components/_filtermodal.scss";
 import {
   Modal,
   ModalContent,

@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/client";
 import { GET_ALL_COLLECTIONS } from "../../../queries/Collection";
 
 // styles
-import "../../../styles/hunt/_collection.scss";
+import "../../../styles/pages/_collection.scss";
 import { useNavigate } from "react-router-dom";
 
 const Collection = () => {

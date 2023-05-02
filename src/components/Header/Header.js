@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-import "./_header.scss";
+import "../../styles/layouts/_header.scss";
 
 // react-router-dom
 import { Link } from "react-router-dom";

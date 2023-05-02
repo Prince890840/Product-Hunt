@@ -10,12 +10,19 @@ export const USER_PROFILE = gql`
         headline
         username
         votedPosts {
+          totalCount
           edges {
             cursor
             node {
+              id
               name
               slug
               tagline
+              votesCount
+              website
+              thumbnail {
+                url
+              }
               topics(first: $first) {
                 edges {
                   node {
