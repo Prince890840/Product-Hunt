@@ -25,7 +25,7 @@ $font-family_1: $font-family-light;
 }
 
 .collection-post-wrapper {
-  @include flex(flex, flex-start, center);
+  @include flex(flex, space-between, center);
   margin-top: 64px;
 
   .post-item-content {

@@ -101,6 +101,39 @@ const Products = () => {
     }
   };
 
+  const groupArrays = allPosts.reduce(
+    (acc, item) => {
+      const date = new Date(item.node.createdAt);
+      const formattedDate = date.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+      });
+      const currentDate = new Date();
+      const yesterdayDate = new Date();
+      yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+
+      if (date.toDateString() === currentDate.toDateString()) {
+        // Don't display date title if the date is current date
+        acc["current"].push(item);
+      } else if (date.toDateString() === yesterdayDate.toDateString()) {
+        // Display "Yesterday" date title if the date is yesterday
+        acc["Yesterday, " + formattedDate] =
+          acc["Yesterday, " + formattedDate] || [];
+        acc["Yesterday, " + formattedDate].push(item);
+      } else {
+        // Display date title for all other dates
+        acc[formattedDate] = acc[formattedDate] || [];
+        acc[formattedDate].push(item);
+      }
+
+      return acc;
+    },
+    { current: [] }
+  );
+
+  const groupArraysKeys = Object.keys(groupArrays);
+
   return (
     <Fragment>
       <div className="header__section">
@@ -112,9 +145,22 @@ const Products = () => {
           </select>
         </form>
       </div>
-      {allPosts.map((product, index) => (
-        <ProductItem key={index} product={product} />
-      ))}
+      {groupArraysKeys.map((date) => {
+        if (date === "current") {
+          return groupArrays[date].map((product, index) => (
+            <ProductItem key={index} product={product} />
+          ));
+        } else {
+          return (
+            <div key={date}>
+              <h2>{date}</h2>
+              {groupArrays[date].map((product, index) => (
+                <ProductItem key={index} product={product} />
+              ))}
+            </div>
+          );
+        }
+      })}
       <div ref={intersectionObserverRef}>Loading more posts...</div>
     </Fragment>
   );

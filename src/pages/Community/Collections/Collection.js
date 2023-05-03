@@ -8,12 +8,20 @@ import { GET_ALL_COLLECTIONS } from "../../../queries/Collection";
 
 // styles
 import "../../../styles/pages/_collection.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Collection = () => {
   const [allConections, setAllCollections] = useState([]);
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  let pathname = location.pathname;
+  pathname = pathname.replace("/", "");
+  pathname = pathname.charAt(0).toUpperCase() + pathname.slice(1);
+
+  const broadCasting = `Home → ${pathname}`;
 
   const { loading, fetchMore } = useQuery(GET_ALL_COLLECTIONS, {
     variables: {
@@ -75,7 +83,7 @@ const Collection = () => {
     <div className="collection-container">
       <div className="collection-header-section">
         <div className="path-section">
-          <p>Home → Collections</p>
+          <p>{broadCasting}</p>
         </div>
         <div className="collection-content">
           <h1>Collections</h1>

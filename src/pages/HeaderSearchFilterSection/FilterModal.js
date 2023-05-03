@@ -44,22 +44,24 @@ const FilterModal = (props) => {
   const navigate = useNavigate();
 
   const navigateToProduct = (type) => {
-    switch (type) {
-      case "Yesterday":
-        navigate(
-          `/time-travel/${getCurrentYear()}/${getPreviousMonth()}/${getPreviousDay().getDate()}`
-        );
-        break;
-      case "lastMonth":
-        navigate(`/time-travel/${getCurrentYear()}/${getPreviousMonth()}`);
-        break;
-      default:
-        navigate(`/time-travel/${getCurrentYear()}`);
-        break;
+    let year = getCurrentYear();
+    let month = getPreviousMonth(); // default to previous month
+  
+    if (type === "Yesterday") {
+      const yesterday = getPreviousDay();
+      if (yesterday.getMonth() === new Date().getMonth()) {
+        month = new Date().toLocaleString("default", { month: "numeric" });
+      }
+      navigate(`/time-travel/${year}/${month}/${yesterday.getDate()}`);
+    } else if (type === "lastMonth") {
+      navigate(`/time-travel/${year}/${month}`);
+    } else {
+      navigate(`/time-travel/${year}`);
     }
-
+  
     setIsOpen(!isOpen);
   };
+  
 
   const getSearchProduct = (event) => {
     setSearchValue(event.target.value);

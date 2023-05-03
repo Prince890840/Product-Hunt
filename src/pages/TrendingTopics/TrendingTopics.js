@@ -23,13 +23,13 @@ const TrendingTopics = () => {
     <Fragment>
       <div className="trending__topics__filter">
         <div className="current__activity">
-          <div className="today__activity">
+          <div className="today__activity bgColor">
             <Graph />
-            <span>Today</span>
+            <span className="today">Today</span>
           </div>
           <div className="today__activity spacing">
             <Chart />
-            <span>Activity</span>
+            <span className="activity">Activity</span>
           </div>
         </div>
         <div className="trending__topics">

@@ -15,9 +15,17 @@ $border-color_2: transparent;
 
     border-right: 2px solid #d9e1ec;
     padding-right: 8px;
+
+    .bgColor {
+      background-color: black;
+
+      .today {
+        color: #ffffff;
+      }
+    }
+
     .today__activity {
       box-sizing: border-box;
-      background: 0 0;
       border-color: $border-color_1;
       border-radius: calc(10 * 4px);
       border: 1px solid #d9e1ec;
