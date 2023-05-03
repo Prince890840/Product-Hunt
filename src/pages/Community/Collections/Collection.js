@@ -1,5 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 
+// react-router-dom
+import { useLocation, useNavigate } from "react-router-dom";
+
 // apollo-client
 import { useQuery } from "@apollo/client";
 
@@ -8,7 +11,6 @@ import { GET_ALL_COLLECTIONS } from "../../../queries/Collection";
 
 // styles
 import "../../../styles/pages/_collection.scss";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const Collection = () => {
   const [allConections, setAllCollections] = useState([]);

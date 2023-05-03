@@ -9,6 +9,7 @@ $background-color_2: #feede6;
 
 .collection-header-section {
   max-width: 800px;
+
   .path-section {
     p {
       @include font(12px, 20px);
@@ -16,11 +17,13 @@ $background-color_2: #feede6;
       margin: 28px 0 20px 0;
     }
   }
+
   .collection-content {
     h1 {
       @include font(24px, 32px);
       margin-top: 8px;
     }
+
     p {
       @include font(24px, 32px);
       margin-top: 8px;
@@ -34,6 +37,10 @@ $background-color_2: #feede6;
 .search__collections__section {
   color: #838d99;
 
+  input {
+    width: 100%
+  }
+
   .collection__box {
     @include font(14px, normal);
     background: #ffffff;
@@ -43,7 +50,7 @@ $background-color_2: #feede6;
     background-size: 20px 20px;
     border-radius: 5px;
     padding: 0 20px 0 40px;
-    width: 380px;
+    max-width: 380px;
     box-sizing: border-box;
     appearance: none;
     color: #4b587c;
@@ -131,9 +138,80 @@ $background-color_2: #feede6;
 .collection__image {
   max-height: 36px;
   max-width: 36px;
+
   img {
     width: 100%;
     height: 100%;
     border-radius: 4px;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .collection-container {
+    max-width: 650px;
+    margin: 32px auto;
+  }
+
+  .collection-header-section {
+    margin: 0 32px;
+  }
+
+  .collection-main-section {
+    margin: 40px 32px 32px;
+
+    .collection-cards {
+      grid-template-columns: 1fr;
+
+      .card {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .collection-container {
+    max-width: 765px;
+    margin: 32px auto;
+  }
+
+  .collection-header-section {
+    margin: 0 32px;
+  }
+
+  .collection-main-section {
+    margin: 40px 32px 32px;
+
+    .collection-cards {
+      grid-template-columns: 1fr;
+
+      .card {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .collection-container {
+    max-width: 1000px;
+    margin: 32px auto;
+  }
+
+  .collection-header-section {
+    margin: 0 32px;
+  }
+
+  .collection-main-section {
+    margin: 40px 32px 32px;
+
+    .collection-cards {
+      grid-template-columns: 1fr 1fr;
+
+      .card {
+        max-width: 500px;
+      }
+    }
   }
 }
