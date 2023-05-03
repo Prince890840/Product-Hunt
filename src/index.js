@@ -12,7 +12,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ACCESS_TOKEN } from "./constant/Constant";
 
 const client = new ApolloClient({
-  uri: "https://api.producthunt.com/v2/api/graphql",
+  uri: process.env.REACT_APP_PRODUCT_HUNT_API_ENDPOINT,
   headers: {
     Authorization: `Bearer ${ACCESS_TOKEN}`,
   },

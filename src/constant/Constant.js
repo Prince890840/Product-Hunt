@@ -1,1 +1,1 @@
-export const ACCESS_TOKEN = "0-cHXNnLeNC2JNzmExXB8W_urDjlCGHTp-yE06ns5YI";
+export const ACCESS_TOKEN = process.env.REACT_APP_PRODUCT_HUNT_API_ACCESS_TOKEN;
