@@ -62,7 +62,7 @@ $background-color_1: #e7ffff;
 }
 
 @mixin breakpoint($point) {
-  @if $point == md {
+  @if $point ==md {
     @media (min-width: $md) {
       @content;
     }
@@ -79,4 +79,25 @@ $background-color_1: #e7ffff;
 @mixin font($size, $height) {
   font-size: $size;
   line-height: $height;
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .wrapper {
+    max-width: 968px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .wrapper {
+    max-width: 968px;
+    margin: 0 auto;
+  }
 }

@@ -18,6 +18,8 @@ import { USER_PROFILE } from "../../queries/user";
 // others
 import Logo from "../SVG/Logo";
 import Bell from "../SVG/Bell";
+import Menu from "../../assets/images/menuIcon.png";
+import Search from "../../assets/images/search.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -130,6 +132,40 @@ const Header = () => {
             </ul>
           </div>
         </nav>
+
+        {/* Mobile Navbar Start */}
+        <nav className="mobile-nav">
+          <div className="menu-icon">
+            <img src={Menu} alt="menu" className="menu__image" />
+            <img src={Search} alt="search" className="search__image" />
+          </div>
+          <Link
+            aria-label="Product Hunt Logo"
+            to="/"
+            onClick={() => ref.current.complete()}
+          >
+            <Logo />
+          </Link>
+          <div className="profile__section">
+            <ul>
+              <li className="profile__item notification">
+                <Bell />
+                <p>0</p>
+              </li>
+              <li className="profile__item">
+                <img
+                  className="user__profile"
+                  src={user?.viewer?.user?.profileImage}
+                  alt="profile"
+                  height={40}
+                  width={40}
+                ></img>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        {/* Mobile Navbar end */}
       </header>
     </>
   );

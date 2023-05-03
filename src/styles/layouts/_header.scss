@@ -52,11 +52,13 @@ nav {
       &::placeholder {
         color: $color_1;
       }
+
       &:focus {
         outline: none;
       }
     }
   }
+
   .navigation__menu {
     ul {
       @include flex(flex, space-between, center);
@@ -140,4 +142,124 @@ nav {
 .inner-menu p {
   @include font(12px, normal);
   color: $nav-item;
+}
+
+nav.mobile-nav {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .product__section_layout {
+    max-width: 100%;
+    padding: 0 15px;
+
+    .left_section {
+      min-width: 90%;
+      max-height: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .nav__container {
+    display: none !important;
+  }
+
+  nav.mobile-nav {
+    padding: 20px 32px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .menu__image {
+      width: 25px;
+      height: 20px;
+    }
+
+    .search__image {
+      padding: 4px;
+      margin-left: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .product__section_layout {
+    padding: 0 8px;
+
+    .left_section {
+      min-width: 90%;
+      max-height: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .nav__container {
+    display: none !important;
+  }
+
+  nav.mobile-nav {
+    padding: 20px 32px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .menu__image {
+      width: 25px;
+      height: 20px;
+    }
+
+    .search__image {
+      padding: 4px;
+      margin-left: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .product__section_layout {
+    .left_section {
+      min-width: 90%;
+      max-height: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .nav__container {
+    display: none !important;
+  }
+
+  nav.mobile-nav {
+    padding: 20px 32px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .menu__image {
+      width: 25px;
+      height: 20px;
+    }
+
+    .search__image {
+      padding: 4px;
+      margin-left: 20px;
+    }
+  }
 }
