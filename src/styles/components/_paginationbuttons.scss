@@ -1,8 +1,5 @@
 @import "../abstracts//variables";
 
-$color_1: #21293c;
-$border-color_1: #d9e1ec;
-
 .header-section {
   display: flex;
   justify-content: space-between;
@@ -11,7 +8,7 @@ $border-color_1: #d9e1ec;
   
   h2 {
     @include font(18px, 28px);
-    color: #21293c;
+    color: $primary_color600;
   }
 }
 .pagination-buttons {
@@ -28,14 +25,14 @@ $border-color_1: #d9e1ec;
     text-decoration: none !important;
     height: 34px;
     padding: 0 13px;
-    background: #fff;
-    border-color: $border-color_1;
-    color: $color_1;
-    fill: #000;
+    background: $primary_color200;
+    border-color: $primary_color500;
+    color: $primary_color600;
+    fill: $secondary_color700;
     cursor: pointer;
 
     &:hover {
-      background: #e8e8e8;
+      background: $secondary_color800;
     }
   }
 }

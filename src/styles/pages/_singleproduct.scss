@@ -1,21 +1,18 @@
 @import "../abstracts/variables";
 
-$color_1: #21293c;
-$color_2: #4b587c;
-
 .header__section {
   @include flex(flex, space-between, center);
 
   h1 {
     @include font(24px, 32px);
-    color: $color_1;
+    color: $primary_color600;
     font-family: $font-family-regular;
   }
   select {
     border: none;
     @include font(14px, 24px);
 
-    color: $color_2;
+    color: $primary_color100;
     cursor: pointer;
     font-family: $font-family-semibold;
   }

@@ -21,7 +21,7 @@ nav {
   width: 100%;
   z-index: 1;
   height: 80px;
-  background-color: white;
+  background-color: $primary_color200;
 
   .navigation__section {
     display: flex;
@@ -32,11 +32,9 @@ nav {
   .search__product__section {
     margin-left: 32px;
 
-    $color_1: #838d99;
-
     .search__box {
       @include font(14px, normal);
-      background: #ffffff;
+      background: $primary_color200;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
       background-repeat: no-repeat;
       background-position: 10px 10px;
@@ -46,12 +44,12 @@ nav {
       width: 220px;
       box-sizing: border-box;
       appearance: none;
-      color: #4b587c;
+      color: $primary_color100;
       height: 40px;
-      border: 1px solid #d9e1ec;
+      border: 1px solid $primary_color500;
 
       &::placeholder {
-        color: $color_1;
+        color: $primary_color400;
       }
 
       &:focus {
@@ -67,7 +65,7 @@ nav {
 
     .nav__link {
       @include font(16px, 24px);
-      color: $nav-item;
+      color: $primary_color100;
     }
 
     li {
@@ -91,7 +89,7 @@ nav {
       @include font(16px, 24px);
       font-family: $font-family-regular;
       cursor: pointer;
-      background: linear-gradient(227deg, #ff4582, #e12e0d);
+      background: linear-gradient(227deg, $secondary_color200, $secondary_color100);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -115,11 +113,11 @@ nav {
 .header-dropdown {
   cursor: pointer;
   border: none;
-  background: #fff;
+  background: $primary_color200;
   font-family: $font-family-regular;
   font-weight: 400;
   @include font(16px, 24px);
-  color: $nav-item;
+  color: $primary_color100;
   outline: none;
   transition: all 0.3s ease;
   text-align: center;
@@ -130,19 +128,19 @@ nav {
   padding: 10px;
   min-width: 330px;
   gap: 5px;
-  background: white;
+  background: $primary_color200;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .inner-menu h3 {
   @include font(16px, normal);
-  color: $nav-item;
+  color: $primary_color100;
 }
 
 .inner-menu p {
   @include font(12px, normal);
-  color: $nav-item;
+  color: $primary_color100;
 }
 
 nav.mobile-nav {

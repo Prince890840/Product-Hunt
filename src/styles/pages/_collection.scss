@@ -1,12 +1,5 @@
 @import "../abstracts/variables";
 
-$color_1: #4b587c;
-$font-family_1: $font-family-light;
-$color_2: #4b587c;
-$color_3: #005ef6;
-$background-color_1: #fff;
-$background-color_2: #feede6;
-
 .collection-header-section {
   max-width: 800px;
   margin-top: 110px;
@@ -14,7 +7,7 @@ $background-color_2: #feede6;
   .path-section {
     p {
       @include font(12px, 20px);
-      color: #4b587c;
+      color: $primary_color100;
       margin: 28px 0 20px 0;
     }
   }
@@ -28,15 +21,15 @@ $background-color_2: #feede6;
     p {
       @include font(24px, 32px);
       margin-top: 8px;
-      color: $color_1;
-      font-family: $font-family_1;
+      color: $primary_color100;
+      font-family: $font-family-light;
       padding: 0 0 48px 0;
     }
   }
 }
 
 .search__collections__section {
-  color: #838d99;
+  color: $primary_color400;
 
   input {
     width: 100%
@@ -44,7 +37,7 @@ $background-color_2: #feede6;
 
   .collection__box {
     @include font(14px, normal);
-    background: #ffffff;
+    background: $primary_color200;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
     background-repeat: no-repeat;
     background-position: 10px 10px;
@@ -54,9 +47,9 @@ $background-color_2: #feede6;
     max-width: 380px;
     box-sizing: border-box;
     appearance: none;
-    color: #4b587c;
+    color: $primary_color100;
     height: 40px;
-    border: 1px solid #d9e1ec;
+    border: 1px solid $primary_color500;
 
     &:focus {
       outline: none;
@@ -78,10 +71,10 @@ $background-color_2: #feede6;
     .card {
       max-width: 390px;
       min-height: 482px;
-      border: 1px solid #d9e1ec;
+      border: 1px solid $primary_color500;
       border-radius: 4px;
-      background-color: $background-color_1;
-      background-image: linear-gradient(12deg, #fff 50%, hsla(0, 0%, 100%, 0));
+      background-color: $primary_color200;
+      background-image: linear-gradient(12deg, $primary_color200 50%, hsla(0, 0%, 100%, 0));
       -webkit-transition: background-color 0.3s ease-in;
       animation: styles_fadeIn__RBdJG 0.3s ease-in-out;
       transition: background-color 0.3s ease-in;
@@ -90,7 +83,7 @@ $background-color_2: #feede6;
       &:hover {
         cursor: pointer;
         border-radius: 4px px;
-        background-color: $background-color_2;
+        background-color: $accent_color100;
       }
 
       h2 {
@@ -101,7 +94,7 @@ $background-color_2: #feede6;
       .paragraph {
         @include font(12px, 20px);
         margin: 0 0 8px 0;
-        color: $color_2;
+        color: $primary_color100;
       }
 
       .description {
@@ -133,7 +126,7 @@ $background-color_2: #feede6;
 }
 
 .total-collections-item {
-  color: $color_3;
+  color: $primary_color300;
 }
 
 .collection__image {

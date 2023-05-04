@@ -1,15 +1,8 @@
 @import "../abstracts/fonts";
 @import "../abstracts/variables";
 
-$background-color_1: rgba(0, 0, 0, 0.5);
-$background-color_2: #fff;
-$background-color_3: transparent;
-$color_1: #21293c;
-$color_2: #4b587c;
-$background-color_4: #6466e9;
-
 .outer-close-btn {
-  background-color: $background-color_2;
+  background-color: $primary_color200;
   position: fixed;
   top: 2rem;
   left: 2rem;
@@ -23,7 +16,7 @@ $background-color_4: #6466e9;
 }
 
 .outer-close-btn svg:hover {
-  fill: #ff6154;
+  fill: $secondary_color300;
 }
 
 .close-button {
@@ -33,16 +26,14 @@ $background-color_4: #6466e9;
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background-color: $background-color_3;
+  background-color: transparent;
   outline: none;
 }
 
 .search__product__section {
-  $color_1: #838d99;
-
   .search__box {
     @include font(16px, normal);
-    background: #f5f8ff;
+    background: $primary_color700;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
     background-repeat: no-repeat;
     background-position: 14px 16px;
@@ -52,13 +43,14 @@ $background-color_4: #6466e9;
     width: 100%;
     box-sizing: border-box;
     appearance: none;
-    color: #000000;
+    color: $secondary_color700;
     height: 56px;
-    border: 1px solid #d9e1ec;
+    border: 1px solid $primary_color500;
 
     &::placeholder {
-      color: $color_1;
+      color: $primary_color400;
     }
+
     &:focus {
       outline: none;
     }
@@ -70,7 +62,7 @@ $background-color_4: #6466e9;
 
   .trending__topics_title {
     @include font(12px, 20px);
-    color: #4b587c;
+    color: $primary_color100;
     margin-bottom: 8px;
   }
 
@@ -81,13 +73,13 @@ $background-color_4: #6466e9;
   }
 
   .topics__link .item {
-    background-color: #fff;
+    background-color: $primary_color200;
     user-select: none;
     transition: background-color 0.2s ease-in-out;
     border: 1px solid rgba(217, 225, 236, 0.7);
     border-radius: 5px;
     @include font(12px, 20px);
-    color: #4b587c;
+    color: $primary_color100;
     padding: 4px 8px;
     font-family: $font-family-semibold;
     cursor: pointer;
@@ -101,7 +93,7 @@ $background-color_4: #6466e9;
 
   .topics__link .item:hover {
     outline: 0;
-    background-color: #fef6f2;
+    background-color: $accent_color200;
   }
 }
 
@@ -113,53 +105,63 @@ $background-color_4: #6466e9;
     padding: 12px;
     cursor: pointer;
     user-select: none;
+
     &:hover {
       outline: 0;
-      background-color: #fef6f2;
+      background-color: $accent_color200;
     }
+
     .time__travel_button {
       p {
-        border: 1px solid #d9e1ec;
+        border: 1px solid $primary_color500;
         border-radius: 5px;
         opacity: 0.7;
         @include font(12px, 20px);
-        color: #4b587c;
+        color: $primary_color100;
         padding: 4px 8px;
         text-align: center;
       }
     }
   }
+
   .heading__section {
     @include flex(flex, center, center);
 
     .heading__content {
       margin-left: 8px;
+
       h3 {
         @include font(14px, 24px);
-        color: $color_1;
+        color: $primary_color400;
       }
+
       p {
-        color: $color_2;
+        color: $primary_color100;
         @include font(12px, 20px);
       }
     }
   }
 }
+
 .filter__image_section {
-  background-color: #db4e7a;
+  background-color: $secondary_color400;
   border-radius: 50%;
   height: 32px;
   width: 32px;
+
   svg {
     margin: 8px;
   }
 }
+
 .month__filter {
-  background-color: #51b4d0;
+  background-color: $secondary_color500;
 }
+
 .year__filter {
-  background-color: $background-color_4;
+  background-color: $secondary_color600;
 }
+
 .search__image-section {
   img {
     border-radius: 4px;

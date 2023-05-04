@@ -1,3 +1,5 @@
+@import "../abstracts/variables";
+
 .product__section_layout {
   display: flex;
   flex-wrap: wrap;
@@ -11,7 +13,7 @@
   .right_section {
     max-width: 450px;
     max-height: 100%;
-    border-left: 1px solid #d9e1ec;
+    border-left: 1px solid $primary_color500;
     margin-left: 64px;
     padding-left: 71px;
   }

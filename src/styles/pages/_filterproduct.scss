@@ -1,11 +1,5 @@
 @import "../abstracts/variables";
 
-$color: #4b587c;
-$color_1: #636876;
-$color_2: #21293c;
-$font-family_1: $font-family-regular;
-$background-color_1: #fff;
-
 ul {
   list-style: none;
 }
@@ -16,14 +10,14 @@ ul {
 }
 
 .product-section {
-  background-color: $background-color_1;
+  background-color: $primary_color200;
   border-radius: 5px;
-  border: 1px solid #d9e1ec;
+  border: 1px solid $primary_color500;
 
   .product-area {
     li {
       cursor: pointer;
-      border-bottom: 1px solid #d9e1ec;
+      border-bottom: 1px solid $primary_color500;
 
       &:first-child {
         border-radius: 5px 5px 0 0;
@@ -39,7 +33,7 @@ ul {
 }
 
 .filter-product-zone:hover {
-  background-color: #f9f9f9;
+  background-color: $secondary_color111;
 
   .website__link {
     display: inline-block;
@@ -84,11 +78,11 @@ ul {
 .filter-product-zone {
   .product__content {
     h4 {
-      color: $color_1;
+      color: $secondary_color222;
     }
 
     p {
-      color: $color_1;
+      color: $secondary_color222;
     }
   }
 }
@@ -107,9 +101,9 @@ ul {
     margin: 12px 0 0 0;
 
     p {
-      color: $color;
+      color: $primary_color100;
       margin-right: 12px;
-      font-family: $font-family_1;
+      font-family: $font-family-regular;
     }
   }
 
@@ -118,18 +112,18 @@ ul {
 
     button {
       cursor: pointer;
-      border: 1px solid #d9e1ec;
+      border: 1px solid $primary_color500;
       transition: all 0.3s ease;
       max-height: 64px;
       padding: 10px 4px 12px;
       min-width: 52px;
       max-width: 52px;
-      background-color: $background-color_1;
-      color: $color_2;
+      background-color: $primary_color200;
+      color: $primary_color600;
       @include font(12px, 20px);
       font-family: $font-family-semibold;
       border-radius: 4px;
-      border: 1px solid #d9e1ec;
+      border: 1px solid $primary_color500;
       @include flex(flex, center, center);
       flex-direction: column;
     }

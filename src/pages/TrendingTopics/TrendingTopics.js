@@ -1,16 +1,15 @@
 import React, { Fragment } from "react";
-
-//  styles
-import "../../styles/pages/_trendingtopics.scss";
-
-// components
-import ProductSectionLayout from "../ProductSection/ProductSectionLayout";
-
 // apollo/client
 import { useQuery } from "@apollo/client";
 
 // query
 import { FETCH_TOP_TOPICS } from "../../queries/FetchTopics";
+
+// components
+import ProductSectionLayout from "../ProductSection/ProductSectionLayout";
+
+//  styles
+import "../../styles/pages/_trendingtopics.scss";
 
 // others
 import Graph from "../../components/SVG/Graph";

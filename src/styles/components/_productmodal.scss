@@ -1,11 +1,5 @@
 @import "../abstracts/variables";
 
-$color_2: black;
-$background-color_1: #04aa6d;
-$background-color_2: #f1f1f1;
-$background-color_3: #ddd;
-$background-color_4: #3e8e41;
-
 .overlaw {
   position: fixed;
   inset: 0;
@@ -14,7 +8,7 @@ $background-color_4: #3e8e41;
 }
 
 .outer-close-btn {
-  background-color: #fff;
+  background-color: $primary_color200;
   position: fixed;
   top: 2rem;
   left: 2rem;
@@ -28,7 +22,7 @@ $background-color_4: #3e8e41;
 }
 
 .outer-close-btn svg:hover {
-  fill: #ff6154;
+  fill: $secondary_color300;
 }
 
 .modal__main_content {
@@ -55,32 +49,37 @@ $background-color_4: #3e8e41;
 .product-semi-content {
   display: flex;
   flex-wrap: wrap;
+
   .product__details {
     max-width: 460px;
+
     h1 {
       @include font(24px, 32px);
-      color: #21293c;
+      color: $primary_color600;
       margin-top: 12px;
       text-align: start;
     }
+
     p {
       margin-top: 8px;
       @include font(24px, 32px);
-      color: #4b587c;
+      color: $primary_color100;
       text-align: start;
     }
   }
+
   .product__visit {
     select {
       padding: 8px 16px;
       @include font(14px, 24px);
-      color: #21293c;
+      color: $primary_color600;
     }
+
     .btn {
-      background: linear-gradient(227deg, #ff4582, #ff6154);
+      background: linear-gradient(227deg, $secondary_color200, $secondary_color300);
       transition: all 0.3s ease;
       border-radius: 4px;
-      color: $background-color_2;
+      color: $secondary_color900;
       text-align: center;
       padding: 20px;
       text-transform: uppercase;
@@ -99,14 +98,14 @@ $background-color_4: #3e8e41;
 .product-last-section p {
   text-align: start;
   margin-top: 12px;
-  color: #21293c;
+  color: $primary_color600;
   @include font(16px, 24px);
 }
 
 .dropbtn {
-  border: 1px solid #d9e1ec;
-  background: #fff;
-  color: #21293c;
+  border: 1px solid $primary_color500;
+  background: $primary_color200;
+  color: $primary_color600;
   padding: 18px 14px;
   font-size: 14px;
   border-radius: 4px;
@@ -117,38 +116,40 @@ $background-color_4: #3e8e41;
 }
 
 .dropbtn svg {
-  fill: #4b587c;
+  fill: $primary_color100;
   margin-left: 8px;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
+
   &:hover {
     .dropdown-content {
       display: block;
     }
   }
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: $background-color_2;
+  background-color: $secondary_color900;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   /* a {
-    color: $color_2;
+    color: $secondary_color700;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     &:hover {
-      background-color: $background-color_3;
+      background-color: #ddd;
     }
   } */
 }
 
 .slick-prev:before,
 .slick-next:before {
-  color: black !important;
+  color: $secondary_color700 !important;
 }

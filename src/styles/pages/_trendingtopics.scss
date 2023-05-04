@@ -1,34 +1,30 @@
 @import "../abstracts/variables";
 
-$color_1: #4b587c;
-$color_2: #21293c;
-$font-family_1: $font-family-semibold;
-$border-color_1: #d9e1ec;
-$border-color_2: transparent;
-
 .trending__topics__filter {
   display: flex;
   padding: 12px 0;
+  margin-top: 80px;
+  border-bottom: 1px solid rgba(33,41,63,.1);
 
   .current__activity {
     @include flex(flex, center, center);
 
-    border-right: 2px solid #d9e1ec;
+    border-right: 2px solid $primary_color500;
     padding-right: 8px;
 
     .bgColor {
-      background-color: black;
+      background-color: $secondary_color700;
 
       .today {
-        color: #ffffff;
+        color: $primary_color200;
       }
     }
 
     .today__activity {
       box-sizing: border-box;
-      border-color: $border-color_1;
+      border-color: $primary_color500;
       border-radius: calc(10 * 4px);
-      border: 1px solid #d9e1ec;
+      border: 1px solid $primary_color500;
       display: inline-block;
       white-space: nowrap;
       text-align: center;
@@ -36,10 +32,10 @@ $border-color_2: transparent;
       cursor: pointer;
 
       span {
-        color: $color_1;
+        color: $primary_color100;
         padding: 4px;
         margin-left: 4px;
-        font-family: $font-family_1;
+        font-family: $font-family-semibold;
         text-align: center;
         @include font(14px, 20px);
         font-weight: 600;
@@ -55,8 +51,8 @@ $border-color_2: transparent;
 
     .label {
       margin-left: 12px;
-      font-family: $font-family_1;
-      color: $color_2;
+      font-family: $font-family-semibold;
+      color: $primary_color600;
       word-spacing: 0;
       white-space: nowrap;
       line-height: 24px;
@@ -64,9 +60,9 @@ $border-color_2: transparent;
 
     .topic {
       @include font(14px, 24px);
-      color: #4b587c;
+      color: $primary_color100;
       white-space: nowrap;
-      font-family: $font-family_1;
+      font-family: $font-family-semibold;
       margin-left: 8px;
       appearance: none;
       outline: none;
@@ -74,10 +70,10 @@ $border-color_2: transparent;
       display: inline-block;
       transition: all 0.3s ease;
       text-align: center;
-      background: #eef2ff;
-      border-color: $border-color_2;
+      background: $secondary_color444;
+      border-color: transparent;
       border-radius: calc(10 * 4px);
-      border: 1px solid #d9e1ec;
+      border: 1px solid $primary_color500;
       padding: 4px 12px;
       cursor: pointer;
     }
@@ -91,7 +87,7 @@ $border-color_2: transparent;
 @media screen and (max-width: 480px) {
   .trending__topics__filter {
     max-width: 968px;
-    margin: 0 auto;
+    margin: 110px auto 0 auto;
 
     .trending__topics {
       display: none;
@@ -109,7 +105,7 @@ $border-color_2: transparent;
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .trending__topics__filter {
     max-width: 968px;
-    margin: 0 auto;
+    margin: 110px auto 0 auto;
 
     .trending__topics {
       display: none;
@@ -127,7 +123,7 @@ $border-color_2: transparent;
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .trending__topics__filter {
     max-width: 968px;
-    margin: 0 auto;
+    margin: 110px auto 0 auto;
 
     .trending__topics {
       display: none;

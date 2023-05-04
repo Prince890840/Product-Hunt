@@ -5,17 +5,20 @@ h1 {
   padding: 0;
   text-decoration: none;
 }
+
 a {
   margin: 0;
   padding: 0;
   text-decoration: none;
 }
+
 .section {
   width: 100%;
   padding: 4rem 2rem;
   text-align: center;
-  background-color: $background-color_1;
+  background-color: $primary_color800;
   min-height: 100vh;
+
   .error {
     font-size: 150px;
     color: $color_1;
@@ -24,21 +27,24 @@ a {
       7px 7px 1px #00593e, 8px 8px 1px #00593e, 25px 25px 8px rgba(0, 0, 0, 0.2);
   }
 }
+
 .page {
   margin: 5rem 0 2rem 0;
   font-size: 20px;
   font-weight: 600;
   color: $color_2;
 }
+
 .back-home {
   display: inline-block;
   border: 2px solid #222;
-  color: $color_3;
+  color: $secondary_color700;
   text-transform: uppercase;
   font-weight: 600;
   padding: 0.75rem 1rem 0.6rem;
   transition: all 0.2s linear;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+
   &:hover {
     background: #222;
     color: $color_4;
