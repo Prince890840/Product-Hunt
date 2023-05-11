@@ -22,9 +22,8 @@ const CollectionItem = () => {
   const location = useLocation();
   const pathName = location.pathname.split("/");
 
-  const broadCasting = `Home → ${
-    pathName[1].slice(0, 1).toUpperCase() + pathName[1].slice(1)
-  } → ${data?.collection?.name}`;
+  const broadCasting = `Home → ${pathName[1].slice(0, 1).toUpperCase() + pathName[1].slice(1)
+    } → ${data?.collection?.name}`;
 
   return (
     <div className="collection__item">
@@ -43,9 +42,17 @@ const CollectionItem = () => {
             </div>
             <div className="img-coll-section">
               <img
+                className="collection-item-image"
                 src={post?.node?.thumbnail?.url}
                 alt="single-collection-icon"
               />
+              <div className="img-sm-wrapper">
+                <img
+                  className="img-sm"
+                  src={post?.node?.thumbnail?.url}
+                  alt="single-collection-icon"
+                />
+              </div>
             </div>
           </div>
         </>
