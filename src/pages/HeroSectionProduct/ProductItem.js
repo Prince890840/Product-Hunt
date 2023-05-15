@@ -1,8 +1,5 @@
 import React, { useRef, useState } from "react";
 
-// styles
-import "../../styles/pages/_productitem.scss";
-
 // components
 import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 import ProductModal from "./ProductModal";

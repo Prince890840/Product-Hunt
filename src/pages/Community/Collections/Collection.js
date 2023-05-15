@@ -9,9 +9,6 @@ import { useQuery } from "@apollo/client";
 // query
 import { GET_ALL_COLLECTIONS } from "../../../queries/Collection";
 
-// styles
-import "../../../styles/pages/_collection.scss";
-
 const Collection = () => {
   const [allConections, setAllCollections] = useState([]);
 

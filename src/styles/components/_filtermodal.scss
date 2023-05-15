@@ -132,11 +132,11 @@
 
       h3 {
         @include font(14px, 24px);
-        color: $primary_color400;
+        color: $primary_color600;
       }
 
       p {
-        color: $primary_color100;
+        color: $primary_color600;
         @include font(12px, 20px);
       }
     }

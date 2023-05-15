@@ -3,9 +3,6 @@ import React from "react";
 // react-router-dom
 import { useLocation, useParams } from "react-router-dom";
 
-// styles
-import "../../../styles/pages/_singlecollection.scss";
-
 // apollo-client
 import { useQuery } from "@apollo/client";
 

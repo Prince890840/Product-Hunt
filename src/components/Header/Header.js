@@ -1,7 +1,5 @@
 import React, { useRef, useState } from "react";
 
-import "../../styles/layouts/_header.scss";
-
 // react-router-dom
 import { Link } from "react-router-dom";
 
@@ -40,6 +38,8 @@ const Header = () => {
     },
     fetchPolicy: "cache-and-network",
   });
+
+  if (loading) return "Loading...";
 
   return (
     <>
@@ -121,13 +121,22 @@ const Header = () => {
                 <p>0</p>
               </li>
               <li className="profile__item">
-                <img
-                  className="user__profile"
-                  src={user?.viewer?.user?.profileImage}
-                  alt="profile"
-                  height={40}
-                  width={40}
-                ></img>
+                <div className="dropdown">
+                  <img
+                    className="user__profile"
+                    src={user?.viewer?.user?.profileImage}
+                    alt="profile"
+                    height={40}
+                    width={40}
+                  ></img>
+                  <div className="dropdown-content">
+                    <Link to="/user">
+                      <div className="profile-inner-menu">
+                        <p>Profile</p>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>

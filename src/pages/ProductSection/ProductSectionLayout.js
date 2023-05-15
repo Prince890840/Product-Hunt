@@ -1,8 +1,5 @@
 import React from "react";
 
-// styles
-import "../../styles/pages/_product.scss";
-
 // components
 import RightSidebar from "./RightSidebar";
 import LeftSidebar from "./LeftSidebar";

@@ -1,8 +1,5 @@
 import React, { Fragment } from "react";
 
-// styles
-import "../../styles/pages/_searchbox.scss";
-
 const SearchProduct = () => {
   return (
     <Fragment>

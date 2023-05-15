@@ -7,9 +7,6 @@ import { USER_PROFILE } from "../../queries/user";
 import { useQuery } from "@apollo/client";
 import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 
-// styles
-import "../../styles/pages/_userprofile.scss";
-
 const Profile = () => {
   const [user, setUser] = useState({});
   const { loading } = useQuery(USER_PROFILE, {
@@ -22,7 +19,6 @@ const Profile = () => {
     fetchPolicy: "cache-and-network",
   });
 
-  console.log(user);
   const userProfile = user?.viewer?.user;
 
   return (
@@ -45,7 +41,7 @@ const Profile = () => {
           <button className="edit_profile_btn">Edit Profile</button>
         </div>
       </div>
-      <p className="title">{`${userProfile?.votedPosts.totalCount} Upvotes`}</p>
+      {/* <p className="title">{`${userProfile?.votedPosts.totalCount} Upvotes`}</p> */}
       {userProfile?.votedPosts?.edges?.map((product, index) => (
         <div className="product__zone" key={index}>
           <div className="product__image">

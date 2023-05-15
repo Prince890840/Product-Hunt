@@ -1,8 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 
-// styles
-import "../../styles/pages/_singleproduct.scss";
-
 // components
 import ProductItem from "./ProductItem";
 

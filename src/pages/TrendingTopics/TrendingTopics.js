@@ -8,9 +8,6 @@ import { FETCH_TOP_TOPICS } from "../../queries/FetchTopics";
 // components
 import ProductSectionLayout from "../ProductSection/ProductSectionLayout";
 
-//  styles
-import "../../styles/pages/_trendingtopics.scss";
-
 // others
 import Graph from "../../components/SVG/Graph";
 import Chart from "../../components/SVG/Chart";

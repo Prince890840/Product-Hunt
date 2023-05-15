@@ -1,8 +1,5 @@
 import React, { Fragment } from "react";
 
-// styles
-import "../../styles/pages/_rightsidebar.scss";
-
 const RightSidebar = () => {
   return (
     <Fragment>

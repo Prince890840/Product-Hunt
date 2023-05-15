@@ -6,9 +6,6 @@ import { Outlet, useLocation } from "react-router-dom";
 // components
 import Header from "../../components/Header/Header";
 
-// styles
-import "../../styles/layouts/_rootlayout.scss";
-
 export default function RootLayout() {
   const path = useLocation();
   return (

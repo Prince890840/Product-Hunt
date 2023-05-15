@@ -147,6 +147,42 @@ nav.mobile-nav {
   display: none;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .dropdown-content {
+      display: block;
+    }
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 8px;
+  background-color: $secondary_color900;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.profile-inner-menu {
+  @include flex(flex, flex-start, center);
+  padding: 10px;
+  min-width: 190px;
+  gap: 5px;
+  background: $primary_color200;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-inner-menu p {
+  @include font(16px, 24px);
+  color: $primary_color100;
+}
+
 @media screen and (max-width: 480px) {
   .product__section_layout {
     max-width: 100%;

@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // styles
-import "../../styles/components/_productmodal.scss";
 import {
   Modal,
   ModalContent,
@@ -60,7 +59,7 @@ const ProductModal = (props) => {
 
   return ReactDOM.createPortal(
     <>
-      <ModalShadow onClick={onCloseModal}/>
+      <ModalShadow onClick={onCloseModal} />
       <div className="overlaw">
         <div className="outer-close-btn" onClick={onCloseModal}>
           <svg
@@ -123,13 +122,11 @@ const ProductModal = (props) => {
             <Slider {...settings}>
               {data?.post?.media &&
                 data?.post?.media?.map((item, index) => (
-                  <div key={index}>
+                  <div className="image-wrapper" key={index}>
                     <img
                       src={item.url}
                       style={{
-                        width: "368px",
-                        height: "220px",
-                        paddingRight: "44px",
+                        objectFit: "cover", maxWidth: "100%", display: "block",
                       }}
                       alt={item.type}
                     />

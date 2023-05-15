@@ -3,9 +3,6 @@ import React, { Fragment } from "react";
 // react-router-dom
 import { Link } from "react-router-dom";
 
-// style
-import "../../styles/pages/_errorcontroller.scss";
-
 const ErrorController = () => {
   return (
     <Fragment>

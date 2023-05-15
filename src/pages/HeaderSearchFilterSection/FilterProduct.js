@@ -3,9 +3,6 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 // react-router-dom
 import { useLocation } from "react-router-dom";
 
-// styles
-import "../../styles/pages/_filterproduct.scss";
-
 // components
 import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 import PaginationButtons from "./PaginationButtons";
