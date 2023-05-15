@@ -1,28 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// styles
-import {
-  Modal,
-  ModalContent,
-  ModalShadow,
-} from "../../components/Modal/ModalStyle";
+// query and apollo-client
+import { GET_SINGLE_POST } from "../../queries/FetchSingleProduct";
+import { useQuery } from "@apollo/client";
+
+// prop-types
+import PropTypes from "prop-types";
 
 // component
 import ProductThumbnail from "../../components/ProductThumbnail/ProductThumbnail";
 import styled from "styled-components";
 
-// slider
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, HashNavigation } from "swiper";
 
-// prop-types
-import PropTypes from "prop-types";
-
-// query and apollo-client
-import { GET_SINGLE_POST } from "../../queries/FetchSingleProduct";
-import { useQuery } from "@apollo/client";
+// styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import {
+  Modal,
+  ModalContent,
+  ModalShadow,
+} from "../../components/Modal/ModalStyle";
 
 const Comment = styled.div`
   white-space: pre-wrap;
@@ -48,14 +50,6 @@ const ProductModal = (props) => {
   const { data } = useQuery(GET_SINGLE_POST, {
     variables: { postId: postId, slug: slug, commentsFirst2: 5 },
   });
-
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrow: true,
-  };
 
   return ReactDOM.createPortal(
     <>
@@ -119,20 +113,26 @@ const ProductModal = (props) => {
                 <p>{data?.post?.description}</p>
               </div>
             </div>
-            <Slider {...settings}>
+            <Swiper
+              spaceBetween={8}
+              slidesPerView={3}
+              hashNavigation={{
+                watchState: true,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation, HashNavigation]}
+              className="mySwiper"
+            >
               {data?.post?.media &&
                 data?.post?.media?.map((item, index) => (
-                  <div className="image-wrapper" key={index}>
-                    <img
-                      src={item.url}
-                      style={{
-                        objectFit: "cover", maxWidth: "100%", display: "block",
-                      }}
-                      alt={item.type}
-                    />
-                  </div>
+                  <SwiperSlide key={index}>
+                    <img src={item.url} alt={item.type} />
+                  </SwiperSlide>
                 ))}
-            </Slider>
+            </Swiper>
             {data?.post?.comments &&
               data?.post?.comments?.edges?.map((comment, index) => (
                 <Comment key={index}>{comment?.node?.body}</Comment>
