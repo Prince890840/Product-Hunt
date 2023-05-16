@@ -8,6 +8,14 @@
   max-height: 100%;
 }
 
+.review__section .banner-sec {
+  border: 1px solid $primary_color500;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  height: 0;
+}
+
 .review__section h5 {
   text-transform: uppercase;
   font-size: 12px;

@@ -18,15 +18,24 @@ import Logo from "../SVG/Logo";
 import Bell from "../SVG/Bell";
 import Menu from "../../assets/images/menuIcon.png";
 import Search from "../../assets/images/search.svg";
+import AuthenticationModal from "../../pages/Auth/AuthenticationModal";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userCredentialModal, setUserCredentialModal] = useState(false);
+
   const [user, setUser] = useState({});
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const ref = useRef(null);
 
   const openModal = () => {
     setIsOpen(true);
+  };
+
+  const openUserCredentialModal = () => {
+    setUserCredentialModal(true);
   };
 
   const { loading } = useQuery(USER_PROFILE, {
@@ -44,6 +53,12 @@ const Header = () => {
   return (
     <>
       {isOpen && <FilterModal setIsOpen={setIsOpen} isOpen={isOpen} />}
+      {userCredentialModal && (
+        <AuthenticationModal
+          setUserCredentialModal={setUserCredentialModal}
+          userCredentialModal={userCredentialModal}
+        />
+      )}
       <LoadingBar color="#FF6154" ref={ref} shadow={true} />
       <header>
         <nav className="nav__container">
@@ -112,33 +127,59 @@ const Header = () => {
             </div>
           </div>
           <div className="profile__section">
-            <ul>
-              <li className="profile__item">
-                <p className="lunch__product">Submit</p>
-              </li>
-              <li className="profile__item notification">
-                <Bell />
-                <p>0</p>
-              </li>
-              <li className="profile__item">
-                <div className="dropdown">
-                  <img
-                    className="user__profile"
-                    src={user?.viewer?.user?.profileImage}
-                    alt="profile"
-                    height={40}
-                    width={40}
-                  ></img>
-                  <div className="dropdown-content">
-                    <Link to="/user">
-                      <div className="profile-inner-menu">
-                        <p>Profile</p>
-                      </div>
-                    </Link>
+            {isLoggedIn ? (
+              <ul>
+                <li className="profile__item">
+                  <p className="lunch__product">Submit</p>
+                </li>
+                <li className="profile__item notification">
+                  <Bell />
+                  <p>0</p>
+                </li>
+                <li className="profile__item">
+                  <div className="dropdown">
+                    <img
+                      className="user__profile"
+                      src={user?.viewer?.user?.profileImage}
+                      alt="profile"
+                      height={40}
+                      width={40}
+                    ></img>
+                    <div className="dropdown-content">
+                      <Link to="/user">
+                        <div className="profile-inner-menu">
+                          <p>Profile</p>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            ) : (
+              <ul className="user_credential_section">
+                <li>
+                  <Link className="product_post_link">
+                    How to post a product?
+                  </Link>
+                </li>
+                <li className="item">
+                  <button
+                    className="sign_in credential_btn"
+                    onClick={openUserCredentialModal}
+                  >
+                    Sign in
+                  </button>
+                </li>
+                <li className="item">
+                  <button
+                    className="sign_up credential_btn"
+                    onClick={openUserCredentialModal}
+                  >
+                    Sign up
+                  </button>
+                </li>
+              </ul>
+            )}
           </div>
         </nav>
 

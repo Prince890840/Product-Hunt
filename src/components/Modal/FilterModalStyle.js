@@ -10,7 +10,7 @@ export const Modal = styled.div`
   bottom: 0;
   left: 0;
   z-index: 5;
-  max-height: 342px;
+  max-height: fit-content;
   left: calc(50% - 290px);
   display: flex;
   flex-direction: column;
