@@ -5,9 +5,6 @@ import PropTypes from "prop-types";
 // react-router-dom
 import { createPortal } from "react-dom";
 
-// google-oauth
-import { GoogleLogin } from "@react-oauth/google";
-
 // styles
 import {
   Modal,
@@ -19,16 +16,9 @@ import {
 import LoadingBar from "react-top-loading-bar";
 
 const AuthenticationModal = (props) => {
-  const { userCredentialModal, setUserCredentialModal } = props;
+  const { userCredentialModal, setUserCredentialModal, login } = props;
 
   const ref = useRef(null);
-
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
 
   return createPortal(
     <>
@@ -66,10 +56,7 @@ const AuthenticationModal = (props) => {
                 latest products in tech.
               </p>
               <div className="google_oauth_btn">
-                <GoogleLogin
-                  onSuccess={responseMessage}
-                  onError={errorMessage}
-                />
+                <button onClick={login}>Sign in with Google 🚀</button>
               </div>
               <div className="social_media_icons">
                 <button className="social_icon_button">

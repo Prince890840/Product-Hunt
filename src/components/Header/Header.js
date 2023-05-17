@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // react-router-dom
 import { Link } from "react-router-dom";
@@ -8,6 +8,10 @@ import FilterModal from "../../pages/HeaderSearchFilterSection/FilterModal";
 
 // react-top-loading-bar
 import LoadingBar from "react-top-loading-bar";
+// google-oauth
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import AuthenticationModal from "../../pages/Auth/AuthenticationModal";
+import axios from "axios";
 
 // apollo-client
 import { useQuery } from "@apollo/client";
@@ -18,25 +22,15 @@ import Logo from "../SVG/Logo";
 import Bell from "../SVG/Bell";
 import Menu from "../../assets/images/menuIcon.png";
 import Search from "../../assets/images/search.svg";
-import AuthenticationModal from "../../pages/Auth/AuthenticationModal";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userCredentialModal, setUserCredentialModal] = useState(false);
-
   const [user, setUser] = useState({});
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authenticatedUser, setAuthenticatedUser] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   const ref = useRef(null);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const openUserCredentialModal = () => {
-    setUserCredentialModal(true);
-  };
 
   const { loading } = useQuery(USER_PROFILE, {
     variables: {
@@ -48,15 +42,55 @@ const Header = () => {
     fetchPolicy: "cache-and-network",
   });
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const openUserCredentialModal = () => {
+    setUserCredentialModal(true);
+  };
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setAuthenticatedUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  useEffect(() => {
+    if (authenticatedUser) {
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${authenticatedUser.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${authenticatedUser.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          console.log("response", res);
+          setProfile(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [authenticatedUser]);
+
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
+  };
+
   if (loading) return "Loading...";
 
   return (
     <>
       {isOpen && <FilterModal setIsOpen={setIsOpen} isOpen={isOpen} />}
-      {userCredentialModal && (
+      {!profile && userCredentialModal && (
         <AuthenticationModal
           setUserCredentialModal={setUserCredentialModal}
           userCredentialModal={userCredentialModal}
+          login={login}
+          profile={profile}
         />
       )}
       <LoadingBar color="#FF6154" ref={ref} shadow={true} />
@@ -127,7 +161,7 @@ const Header = () => {
             </div>
           </div>
           <div className="profile__section">
-            {isLoggedIn ? (
+            {profile ? (
               <ul>
                 <li className="profile__item">
                   <p className="lunch__product">Submit</p>
@@ -146,11 +180,14 @@ const Header = () => {
                       width={40}
                     ></img>
                     <div className="dropdown-content">
-                      <Link to="/user">
-                        <div className="profile-inner-menu">
+                      <div className="profile-inner-menu">
+                        <Link to="/user">
                           <p>Profile</p>
-                        </div>
-                      </Link>
+                        </Link>
+                        <p onClick={logOut} className="logout-section">
+                          LogOut
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </li>

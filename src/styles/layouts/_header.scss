@@ -237,13 +237,22 @@ nav.mobile-nav {
 }
 
 .profile-inner-menu {
-  @include flex(flex, flex-start, center);
+  @include flex(flex, center, flex-start);
+  flex-direction: column;
   padding: 10px;
   min-width: 190px;
   gap: 5px;
   background: $primary_color200;
   border-radius: 4px;
   cursor: pointer;
+
+  p {
+    width: 100%;
+  }
+
+  .logout-section {
+    border-top: 1px solid $primary_color100;
+  }
 }
 
 .profile-inner-menu p {
