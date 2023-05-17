@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // react-router-dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // components
 import FilterModal from "../../pages/HeaderSearchFilterSection/FilterModal";
@@ -30,6 +30,8 @@ const Header = () => {
   const [authenticatedUser, setAuthenticatedUser] = useState([]);
   const [profile, setProfile] = useState([]);
 
+  const navigate = useNavigate();
+
   const ref = useRef(null);
 
   const { loading } = useQuery(USER_PROFILE, {
@@ -56,29 +58,40 @@ const Header = () => {
   });
 
   useEffect(() => {
-    if (authenticatedUser) {
-      axios
-        .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${authenticatedUser.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${authenticatedUser.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          console.log("response", res);
-          setProfile(res.data);
-        })
-        .catch((err) => console.log(err));
+    const getUserInfo = async () => {
+      if (authenticatedUser) {
+        try {
+          const response = await axios.get(
+            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${authenticatedUser.access_token}`,
+            {
+              headers: {
+                Authorization: `Bearer ${authenticatedUser.access_token}`,
+                Accept: "application/json",
+              },
+            }
+          );
+          setProfile(response.data);
+        } catch (err) {
+          console.error(err);
+        }
+      }
     }
+    getUserInfo();
   }, [authenticatedUser]);
+
 
   const logOut = () => {
     googleLogout();
     setProfile(null);
+    navigate("/");
+    setUserCredentialModal(!userCredentialModal);
   };
+
+  const navigateToUserSection = () => {
+    if (profile) {
+      navigate("/user");
+    }
+  }
 
   if (loading) return "Loading...";
 
@@ -181,9 +194,7 @@ const Header = () => {
                     ></img>
                     <div className="dropdown-content">
                       <div className="profile-inner-menu">
-                        <Link to="/user">
-                          <p>Profile</p>
-                        </Link>
+                        <p onClick={navigateToUserSection}>Profile</p>
                         <p onClick={logOut} className="logout-section">
                           LogOut
                         </p>
