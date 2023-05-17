@@ -1,7 +1,7 @@
 import React from "react";
 
 // components
-// import RightSidebar from "./RightSidebar";
+import RightSidebar from "./RightSidebar";
 import LeftSidebar from "./LeftSidebar";
 
 const ProductSectionLayout = () => {
@@ -12,7 +12,7 @@ const ProductSectionLayout = () => {
           <LeftSidebar />
         </div>
         <div className="right_section">
-          {/* <RightSidebar /> */}
+          <RightSidebar />
         </div>
       </div>
     </>

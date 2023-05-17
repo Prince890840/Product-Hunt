@@ -1,11 +1,24 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const RightSidebar = () => {
   return (
     <Fragment>
       <div className="review__section">
-        <h5>leave a review</h5>
-        <div className="review__content">
+        {/* <h5>leave a review</h5> */}
+        <Link
+          to="https://www.linkedin.com/events/7061769863710584832/comments/"
+          target="_blank"
+        >
+          <img
+            src={require("../../assets/images/banner.jpg")}
+            alt="product-add"
+            height={300}
+            width={280}
+          />
+        </Link>
+        <div className="banner-sec" />
+        {/* <div className="review__content">
           <div className="review__header">
             <h4>Linksaber</h4>
             <p>Read later links to your email, weekly.</p>
@@ -118,7 +131,7 @@ const RightSidebar = () => {
           <button>← Prev</button>
           <button>Don't show again</button>
           <button>Next →</button>
-        </div>
+        </div> */}
       </div>
     </Fragment>
   );

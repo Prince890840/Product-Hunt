@@ -66,6 +66,10 @@ nav {
     .nav__link {
       @include font(16px, 24px);
       color: $primary_color100;
+
+      &:hover {
+        color: $secondary_color300;
+      }
     }
 
     li {
@@ -89,7 +93,11 @@ nav {
       @include font(16px, 24px);
       font-family: $font-family-regular;
       cursor: pointer;
-      background: linear-gradient(227deg, $secondary_color200, $secondary_color100);
+      background: linear-gradient(
+        227deg,
+        $secondary_color200,
+        $secondary_color100
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -107,6 +115,62 @@ nav {
     .notification svg {
       margin-right: 8px;
     }
+
+    .user_credential_section {
+      margin-left: 32px;
+
+      .product_post_link {
+        font-weight: 400;
+        @include font(16px, 24px);
+        background: linear-gradient(
+          227deg,
+          $secondary_color200,
+          $secondary_color100
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: $primary_color100;
+      }
+
+      .item {
+        margin-left: 32px;
+        text-align: left;
+      }
+
+      .credential_btn {
+        -webkit-appearance: button;
+        cursor: pointer;
+        overflow: visible;
+        text-transform: none;
+        margin: 0;
+      }
+
+      .sign_in {
+        background: 0 0;
+        border: none;
+        padding: 0;
+        @include font(16px, 24px);
+
+        &:hover {
+          color: $secondary_color300;
+        }
+      }
+
+      .sign_up {
+        background: $secondary_color300;
+        border-radius: 4px;
+        color: $primary_color200;
+        font-weight: 600;
+        padding: 8px 16px;
+        @include font(16px, 24px);
+        appearance: none;
+        outline: none;
+        border: 1px solid transparent;
+        display: inline-block;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+    }
   }
 }
 
@@ -121,6 +185,10 @@ nav {
   outline: none;
   transition: all 0.3s ease;
   text-align: center;
+
+  &:hover {
+    color: $secondary_color300;
+  }
 }
 
 .inner-menu {
@@ -169,13 +237,22 @@ nav.mobile-nav {
 }
 
 .profile-inner-menu {
-  @include flex(flex, flex-start, center);
+  @include flex(flex, center, flex-start);
+  flex-direction: column;
   padding: 10px;
   min-width: 190px;
   gap: 5px;
   background: $primary_color200;
   border-radius: 4px;
   cursor: pointer;
+
+  p {
+    width: 100%;
+  }
+
+  .logout-section {
+    border-top: 1px solid $primary_color100;
+  }
 }
 
 .profile-inner-menu p {

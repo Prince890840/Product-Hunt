@@ -10,6 +10,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // access token
 import { ACCESS_TOKEN } from "./constant/Constant";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_PRODUCT_HUNT_API_ENDPOINT,
@@ -22,8 +23,10 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <GoogleOAuthProvider clientId="1069720254597-iojr29ejimkve2qi43v6kkt796b8gqp7.apps.googleusercontent.com">
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
